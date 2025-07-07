@@ -73,6 +73,30 @@ export const translations: Translations = {
         ipAddress: 'IP Address',
         subnetMask: 'Subnet Mask',
         cidrNotation: 'CIDR Notation'
+      },
+      qrGenerator: {
+        name: 'QR Code Generator',
+        description: 'Generate QR codes from text or URLs with customizable colors and error correction',
+        inputText: 'Text or URL',
+        inputPlaceholder: 'Enter text or URL to generate QR code...',
+        foregroundColor: 'Foreground Color',
+        backgroundColor: 'Background Color',
+        errorCorrectionLevel: 'Error Correction Level',
+        generate: 'Generate QR Code',
+        download: 'Download QR Code',
+        success: 'Success',
+        error: 'Error',
+        generateSuccess: 'QR code generated successfully',
+        generateError: 'Failed to generate QR code',
+        downloadSuccess: 'QR code downloaded successfully',
+        emptyInputError: 'Please enter text or URL',
+        noQrCodeError: 'Please generate QR code first',
+        errorLevel: {
+          L: 'L (~7% recovery)',
+          M: 'M (~15% recovery)',
+          Q: 'Q (~25% recovery)',
+          H: 'H (~30% recovery)'
+        }
       }
     }
   },
@@ -148,6 +172,30 @@ export const translations: Translations = {
         ipAddress: 'IP 地址',
         subnetMask: '子网掩码',
         cidrNotation: 'CIDR 表示法'
+      },
+      qrGenerator: {
+        name: '二维码生成器',
+        description: '从文本或URL生成二维码，支持自定义颜色和错误纠正级别',
+        inputText: '文本或网址',
+        inputPlaceholder: '输入文本或网址生成二维码...',
+        foregroundColor: '前景色',
+        backgroundColor: '背景色',
+        errorCorrectionLevel: '错误纠正级别',
+        generate: '生成二维码',
+        download: '下载二维码',
+        success: '成功',
+        error: '错误',
+        generateSuccess: '二维码生成成功',
+        generateError: '二维码生成失败',
+        downloadSuccess: '二维码下载成功',
+        emptyInputError: '请输入文本或网址',
+        noQrCodeError: '请先生成二维码',
+        errorLevel: {
+          L: 'L (~7% 恢复)',
+          M: 'M (~15% 恢复)',
+          Q: 'Q (~25% 恢复)',
+          H: 'H (~30% 恢复)'
+        }
       }
     }
   }

@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 import { ToolMeta } from '@/types/tool';
 import { useI18n } from '@/hooks/useI18n';
 import { Link } from 'react-router-dom';
-import { Hash, Cog, ArrowRightLeft, GitCompare, Network } from 'lucide-react';
+import { Hash, Cog, ArrowRightLeft, GitCompare, Network, QrCode } from 'lucide-react';
 
 const iconMap = {
   hash: Hash,
@@ -11,6 +11,7 @@ const iconMap = {
   'arrow-right-left': ArrowRightLeft,
   'git-compare': GitCompare,
   network: Network,
+  'qr-code': QrCode,
 };
 
 interface ToolCardProps {

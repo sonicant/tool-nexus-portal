@@ -8,6 +8,7 @@ import { JsonDiffTool } from '@/tools/json-diff/JsonDiffTool';
 import { JsonXmlConverterTool } from '@/tools/json-xml-converter/JsonXmlConverterTool';
 import { UrlEncoderTool } from '@/tools/url-encoder/UrlEncoderTool';
 import { SubnetCalculatorTool } from '@/tools/subnet-calculator/SubnetCalculatorTool';
+import { QrGeneratorTool } from '@/tools/qr-generator/QrGeneratorTool';
 
 // Import tool metadata
 import { textHashMeta } from '@/tools/text-hash/meta';
@@ -17,6 +18,7 @@ import { jsonDiffMeta } from '@/tools/json-diff/meta';
 import { jsonXmlConverterMeta } from '@/tools/json-xml-converter/meta';
 import { urlEncoderMeta } from '@/tools/url-encoder/meta';
 import { subnetCalculatorMeta } from '@/tools/subnet-calculator/meta';
+import { qrGeneratorMeta } from '@/tools/qr-generator/meta';
 
 export const categories: ToolCategory[] = [
   {
@@ -89,6 +91,10 @@ export const tools: ToolMeta[] = [
   {
     ...subnetCalculatorMeta,
     component: SubnetCalculatorTool
+  },
+  {
+    ...qrGeneratorMeta,
+    component: QrGeneratorTool
   }
 ];
 
