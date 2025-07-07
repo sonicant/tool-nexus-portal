@@ -1,6 +1,6 @@
 import { useI18n } from '@/hooks/useI18n';
-import { categories, tools, getToolsByCategory } from '@/registry/toolRegistry';
-import { CategorySection } from '@/components/layout/CategorySection';
+import { tools } from '@/registry/toolRegistry';
+import { ToolCard } from '@/components/layout/ToolCard';
 
 const Index = () => {
   const { t } = useI18n();
@@ -17,18 +17,11 @@ const Index = () => {
         </p>
       </div>
 
-      {/* Tools by Category */}
-      <div className="space-y-16">
-        {categories.map((category) => {
-          const categoryTools = getToolsByCategory(category.id);
-          return (
-            <CategorySection
-              key={category.id}
-              category={category}
-              tools={categoryTools}
-            />
-          );
-        })}
+      {/* All Tools Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        {tools.map((tool) => (
+          <ToolCard key={tool.id} tool={tool} />
+        ))}
       </div>
     </div>
   );

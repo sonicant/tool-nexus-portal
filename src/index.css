@@ -12,6 +12,15 @@
 
     --card: 0 0% 100%;
     --card-foreground: 240 9% 9%;
+    
+    --sidebar: 240 5% 96%;
+    --sidebar-foreground: 240 9% 9%;
+    --sidebar-primary: 221 83% 53%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 4% 91%;
+    --sidebar-accent-foreground: 240 9% 9%;
+    --sidebar-border: 240 6% 90%;
+    --sidebar-ring: 221 83% 53%;
 
     --popover: 0 0% 100%;
     --popover-foreground: 240 9% 9%;
@@ -80,8 +89,17 @@
     --background: 240 10% 3.9%;
     --foreground: 240 5% 95%;
 
-    --card: 240 10% 5%;
+    --card: 240 10% 8%;
     --card-foreground: 240 5% 95%;
+    
+    --sidebar: 240 10% 5%;
+    --sidebar-foreground: 240 5% 95%;
+    --sidebar-primary: 221 83% 58%;
+    --sidebar-primary-foreground: 240 10% 3.9%;
+    --sidebar-accent: 240 10% 10%;
+    --sidebar-accent-foreground: 240 5% 95%;
+    --sidebar-border: 240 10% 15%;
+    --sidebar-ring: 221 83% 58%;
 
     --popover: 240 10% 5%;
     --popover-foreground: 240 5% 95%;
@@ -125,7 +143,7 @@
     /* Dark Mode Gradients */
     --gradient-primary: linear-gradient(135deg, hsl(221 83% 58%), hsl(262 63% 62%));
     --gradient-hero: linear-gradient(135deg, hsl(221 83% 58%) 0%, hsl(262 63% 62%) 50%, hsl(189 94% 48%) 100%);
-    --gradient-card: linear-gradient(145deg, hsl(240 10% 5%), hsl(240 10% 8%));
+    --gradient-card: linear-gradient(145deg, hsl(240 10% 8%), hsl(240 10% 12%));
     --gradient-glass: linear-gradient(145deg, rgba(255,255,255,0.1), rgba(255,255,255,0.02));
 
     /* Enhanced shadows for dark mode */

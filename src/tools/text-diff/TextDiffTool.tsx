@@ -74,14 +74,17 @@ export const TextDiffTool = () => {
 
   return (
     <div className="container mx-auto py-8 space-y-6">
-      <div className="flex items-center space-x-3 mb-8">
-        <div className="p-3 bg-gradient-primary rounded-xl shadow-primary">
-          <GitCompare className="h-6 w-6 text-white" />
+      <div className="flex items-center justify-between mb-8">
+        <div className="flex items-center space-x-3">
+          <div className="p-3 bg-gradient-primary rounded-xl shadow-primary">
+            <GitCompare className="h-6 w-6 text-white" />
+          </div>
+          <div>
+            <h1 className="text-3xl font-bold">{t('tools.textDiff.name')}</h1>
+            <p className="text-muted-foreground">{t('tools.textDiff.description')}</p>
+          </div>
         </div>
-        <div>
-          <h1 className="text-3xl font-bold">{t('tools.textDiff.name')}</h1>
-          <p className="text-muted-foreground">{t('tools.textDiff.description')}</p>
-        </div>
+        <HomeButton />
       </div>
 
       <div className="grid md:grid-cols-2 gap-6 mb-6">

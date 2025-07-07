@@ -3,9 +3,14 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useI18n } from '@/hooks/useI18n';
 import { ArrowRightLeft, Copy } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { oneDark, oneLight } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import { useTheme } from '@/hooks/useTheme';
+import { HomeButton } from '@/components/ui/home-button';
 
 // JSON to XML conversion
 const jsonToXml = (obj: any, rootName = 'root'): string => {
@@ -87,10 +92,12 @@ const xmlToJson = (xmlString: string): any => {
 export const JsonXmlConverterTool = () => {
   const { t } = useI18n();
   const { toast } = useToast();
+  const { theme } = useTheme();
   const [activeTab, setActiveTab] = useState('json-to-xml');
   const [jsonInput, setJsonInput] = useState('');
   const [xmlInput, setXmlInput] = useState('');
   const [result, setResult] = useState('');
+  const [indentSize, setIndentSize] = useState('2');
 
   const convertJsonToXml = () => {
     try {
@@ -127,7 +134,7 @@ export const JsonXmlConverterTool = () => {
       }
 
       const parsed = xmlToJson(xmlInput);
-      const json = JSON.stringify(parsed, null, 2);
+      const json = JSON.stringify(parsed, null, parseInt(indentSize));
       setResult(json);
     } catch (error) {
       toast({
@@ -154,21 +161,40 @@ export const JsonXmlConverterTool = () => {
 
   return (
     <div className="container mx-auto py-8 space-y-6">
-      <div className="flex items-center space-x-3 mb-8">
-        <div className="p-3 bg-gradient-primary rounded-xl shadow-primary">
-          <ArrowRightLeft className="h-6 w-6 text-white" />
+      <div className="flex items-center justify-between mb-8">
+        <div className="flex items-center space-x-3">
+          <div className="p-3 bg-gradient-primary rounded-xl shadow-primary">
+            <ArrowRightLeft className="h-6 w-6 text-white" />
+          </div>
+          <div>
+            <h1 className="text-3xl font-bold">{t('tools.jsonXmlConverter.name')}</h1>
+            <p className="text-muted-foreground">{t('tools.jsonXmlConverter.description')}</p>
+          </div>
         </div>
-        <div>
-          <h1 className="text-3xl font-bold">{t('tools.jsonXmlConverter.name')}</h1>
-          <p className="text-muted-foreground">{t('tools.jsonXmlConverter.description')}</p>
-        </div>
+        <HomeButton />
       </div>
 
       <Tabs value={activeTab} onValueChange={setActiveTab}>
-        <TabsList className="grid w-full grid-cols-2">
-          <TabsTrigger value="json-to-xml">{t('tools.jsonXmlConverter.jsonToXml')}</TabsTrigger>
-          <TabsTrigger value="xml-to-json">{t('tools.jsonXmlConverter.xmlToJson')}</TabsTrigger>
-        </TabsList>
+        <div className="flex items-center justify-between">
+          <TabsList className="grid grid-cols-2">
+            <TabsTrigger value="json-to-xml">{t('tools.jsonXmlConverter.jsonToXml')}</TabsTrigger>
+            <TabsTrigger value="xml-to-json">{t('tools.jsonXmlConverter.xmlToJson')}</TabsTrigger>
+          </TabsList>
+          
+          <div className="flex items-center gap-2">
+            <label className="text-sm font-medium">Indent:</label>
+            <Select value={indentSize} onValueChange={setIndentSize}>
+              <SelectTrigger className="w-20">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="2">2</SelectItem>
+                <SelectItem value="4">4</SelectItem>
+                <SelectItem value="8">8</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+        </div>
 
         <TabsContent value="json-to-xml" className="space-y-6">
           <div className="grid md:grid-cols-2 gap-6">
@@ -203,22 +229,32 @@ export const JsonXmlConverterTool = () => {
               </CardHeader>
               <CardContent>
                 <div className="relative">
-                  <Textarea
-                    value={result}
-                    readOnly
-                    rows={8}
-                    className="font-mono text-sm resize-none"
-                    placeholder="XML result will appear here..."
-                  />
-                  {result && (
-                    <Button
-                      size="sm"
-                      variant="outline"
-                      className="absolute top-2 right-2"
-                      onClick={() => copyToClipboard(result)}
-                    >
-                      <Copy className="h-4 w-4" />
-                    </Button>
+                  {result ? (
+                    <div className="relative">
+                      <SyntaxHighlighter
+                        language="xml"
+                        style={theme === 'dark' ? oneDark : oneLight}
+                        customStyle={{
+                          margin: 0,
+                          borderRadius: '6px',
+                          fontSize: '14px',
+                        }}
+                      >
+                        {result}
+                      </SyntaxHighlighter>
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        className="absolute top-2 right-2"
+                        onClick={() => copyToClipboard(result)}
+                      >
+                        <Copy className="h-4 w-4" />
+                      </Button>
+                    </div>
+                  ) : (
+                    <div className="border rounded-md p-4 h-48 flex items-center justify-center text-muted-foreground">
+                      XML result will appear here...
+                    </div>
                   )}
                 </div>
               </CardContent>
@@ -259,22 +295,32 @@ export const JsonXmlConverterTool = () => {
               </CardHeader>
               <CardContent>
                 <div className="relative">
-                  <Textarea
-                    value={result}
-                    readOnly
-                    rows={8}
-                    className="font-mono text-sm resize-none"
-                    placeholder="JSON result will appear here..."
-                  />
-                  {result && (
-                    <Button
-                      size="sm"
-                      variant="outline"
-                      className="absolute top-2 right-2"
-                      onClick={() => copyToClipboard(result)}
-                    >
-                      <Copy className="h-4 w-4" />
-                    </Button>
+                  {result ? (
+                    <div className="relative">
+                      <SyntaxHighlighter
+                        language="json"
+                        style={theme === 'dark' ? oneDark : oneLight}
+                        customStyle={{
+                          margin: 0,
+                          borderRadius: '6px',
+                          fontSize: '14px',
+                        }}
+                      >
+                        {result}
+                      </SyntaxHighlighter>
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        className="absolute top-2 right-2"
+                        onClick={() => copyToClipboard(result)}
+                      >
+                        <Copy className="h-4 w-4" />
+                      </Button>
+                    </div>
+                  ) : (
+                    <div className="border rounded-md p-4 h-48 flex items-center justify-center text-muted-foreground">
+                      JSON result will appear here...
+                    </div>
                   )}
                 </div>
               </CardContent>

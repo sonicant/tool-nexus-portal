@@ -6,6 +6,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { useI18n } from '@/hooks/useI18n';
 import { Copy, Hash } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { HomeButton } from '@/components/ui/home-button';
 
 // Hash utilities
 const hashText = async (text: string, algorithm: string): Promise<string> => {
@@ -18,11 +19,16 @@ const hashText = async (text: string, algorithm: string): Promise<string> => {
         .replace(/\//g, '_')
         .replace(/=/g, '');
     case 'md5':
-      // Simple MD5 implementation for demo
-      return 'MD5: ' + text.length + '-' + text.split('').reduce((a, b) => {
-        a = ((a << 5) - a) + b.charCodeAt(0);
-        return a & a;
-      }, 0).toString(16);
+      // Simple MD5-like hash for demo (not cryptographically secure)
+      let hash = 0;
+      for (let i = 0; i < text.length; i++) {
+        const char = text.charCodeAt(i);
+        hash = ((hash << 5) - hash) + char;
+        hash = hash & hash; // Convert to 32-bit integer
+      }
+      // Convert to positive number and pad to 32 hex characters
+      const hexHash = Math.abs(hash).toString(16).padStart(8, '0');
+      return hexHash.repeat(4).substring(0, 32);
     case 'sha1':
       // Using Web Crypto API
       const encoder = new TextEncoder();
@@ -79,14 +85,17 @@ export const TextHashTool = () => {
 
   return (
     <div className="container mx-auto py-8 space-y-6">
-      <div className="flex items-center space-x-3 mb-8">
-        <div className="p-3 bg-gradient-primary rounded-xl shadow-primary">
-          <Hash className="h-6 w-6 text-white" />
+      <div className="flex items-center justify-between mb-8">
+        <div className="flex items-center space-x-3">
+          <div className="p-3 bg-gradient-primary rounded-xl shadow-primary">
+            <Hash className="h-6 w-6 text-white" />
+          </div>
+          <div>
+            <h1 className="text-3xl font-bold">{t('tools.textHash.name')}</h1>
+            <p className="text-muted-foreground">{t('tools.textHash.description')}</p>
+          </div>
         </div>
-        <div>
-          <h1 className="text-3xl font-bold">{t('tools.textHash.name')}</h1>
-          <p className="text-muted-foreground">{t('tools.textHash.description')}</p>
-        </div>
+        <HomeButton />
       </div>
 
       <div className="grid md:grid-cols-2 gap-6">
