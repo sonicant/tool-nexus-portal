@@ -6,6 +6,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useI18n } from '@/hooks/useI18n';
 import { Link, Copy } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { HomeButton } from '@/components/ui/home-button';
 
 export const UrlEncoderTool = () => {
   const { t } = useI18n();
@@ -77,14 +78,17 @@ export const UrlEncoderTool = () => {
 
   return (
     <div className="container mx-auto py-8 space-y-6">
-      <div className="flex items-center space-x-3 mb-8">
-        <div className="p-3 bg-gradient-primary rounded-xl shadow-primary">
-          <Link className="h-6 w-6 text-white" />
+      <div className="flex items-center justify-between mb-8">
+        <div className="flex items-center space-x-3">
+          <div className="p-3 bg-gradient-primary rounded-xl shadow-primary">
+            <Link className="h-6 w-6 text-white" />
+          </div>
+          <div>
+            <h1 className="text-3xl font-bold">{t('tools.urlEncoder.name')}</h1>
+            <p className="text-muted-foreground">{t('tools.urlEncoder.description')}</p>
+          </div>
         </div>
-        <div>
-          <h1 className="text-3xl font-bold">{t('tools.urlEncoder.name')}</h1>
-          <p className="text-muted-foreground">{t('tools.urlEncoder.description')}</p>
-        </div>
+        <HomeButton />
       </div>
 
       <Tabs value={activeTab} onValueChange={setActiveTab}>

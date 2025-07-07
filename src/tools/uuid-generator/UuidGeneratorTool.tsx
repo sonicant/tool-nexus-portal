@@ -8,6 +8,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { useI18n } from '@/hooks/useI18n';
 import { Copy, Cog, RefreshCw } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { HomeButton } from '@/components/ui/home-button';
 
 // UUID generation utilities
 const generateUUIDv4 = (): string => {
@@ -67,14 +68,17 @@ export const UuidGeneratorTool = () => {
 
   return (
     <div className="container mx-auto py-8 space-y-6">
-      <div className="flex items-center space-x-3 mb-8">
-        <div className="p-3 bg-gradient-primary rounded-xl shadow-primary">
-          <Cog className="h-6 w-6 text-white" />
+      <div className="flex items-center justify-between mb-8">
+        <div className="flex items-center space-x-3">
+          <div className="p-3 bg-gradient-primary rounded-xl shadow-primary">
+            <Cog className="h-6 w-6 text-white" />
+          </div>
+          <div>
+            <h1 className="text-3xl font-bold">{t('tools.uuidGenerator.name')}</h1>
+            <p className="text-muted-foreground">{t('tools.uuidGenerator.description')}</p>
+          </div>
         </div>
-        <div>
-          <h1 className="text-3xl font-bold">{t('tools.uuidGenerator.name')}</h1>
-          <p className="text-muted-foreground">{t('tools.uuidGenerator.description')}</p>
-        </div>
+        <HomeButton />
       </div>
 
       <div className="grid md:grid-cols-2 gap-6">

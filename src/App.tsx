@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "@/components/ui/theme-provider";
 import { I18nContext, useI18nProvider } from "@/hooks/useI18n";
+import { FavoritesProvider } from "@/hooks/useFavorites";
 import { SidebarProvider, SidebarTrigger, SidebarInset } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/layout/AppSidebar";
 import { Header } from "@/components/layout/Header";
@@ -15,21 +16,23 @@ import NotFound from "./pages/NotFound";
 const queryClient = new QueryClient();
 
 const AppContent = () => (
-  <SidebarProvider>
-    <div className="min-h-screen flex w-full">
-      <AppSidebar />
-      <SidebarInset className="flex-1">
-        <Header />
-        <div className="flex-1">
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/tools/:toolId" element={<ToolPage />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </div>
-      </SidebarInset>
-    </div>
-  </SidebarProvider>
+  <FavoritesProvider>
+    <SidebarProvider>
+      <div className="min-h-screen flex w-full">
+        <AppSidebar />
+        <SidebarInset className="flex-1">
+          <Header />
+          <div className="flex-1">
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/tools/:toolId" element={<ToolPage />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </div>
+        </SidebarInset>
+      </div>
+    </SidebarProvider>
+  </FavoritesProvider>
 );
 
 const App = () => {

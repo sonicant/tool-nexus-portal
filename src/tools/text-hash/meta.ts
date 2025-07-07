@@ -7,8 +7,8 @@ export const textHashMeta: Omit<ToolMeta, 'component'> = {
     zh: '文本哈希'
   },
   description: {
-    en: 'Convert text to various hash algorithms (MD5, SHA1, Base64, etc.)',
-    zh: '将文本转换为各种哈希算法（MD5、SHA1、Base64等）'
+    en: 'Convert text to secure hash formats including MD5, SHA-1, SHA-256, Base64, and Base64URL. Perfect for password hashing, data integrity verification, and encoding tasks.',
+    zh: '将文本转换为安全哈希格式，包括MD5、SHA-1、SHA-256、Base64和Base64URL。适用于密码哈希、数据完整性验证和编码任务。'
   },
   icon: 'hash',
   category: 'hash',

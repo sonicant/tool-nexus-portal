@@ -7,8 +7,8 @@ export const subnetCalculatorMeta: Omit<ToolMeta, 'component'> = {
     zh: '子网计算器'
   },
   description: {
-    en: 'Calculate network subnets, CIDR, and IP ranges',
-    zh: '计算网络子网、CIDR和IP范围'
+    en: 'Advanced subnet calculator supporting both CIDR notation and subnet mask formats. Calculate network ranges, broadcast addresses, host counts, and subnetting scenarios for network planning.',
+    zh: '高级子网计算器，支持CIDR表示法和子网掩码格式。计算网络范围、广播地址、主机数量和网络规划的子网划分场景。'
   },
   icon: 'network',
   category: 'network',

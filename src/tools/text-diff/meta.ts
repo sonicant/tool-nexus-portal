@@ -7,8 +7,8 @@ export const textDiffMeta: Omit<ToolMeta, 'component'> = {
     zh: '文本对比'
   },
   description: {
-    en: 'Compare two text strings with visual diff highlighting',
-    zh: '比较两个文本字符串并高亮显示差异'
+    en: 'Compare two text documents side-by-side with detailed visual highlighting of additions, removals, and modifications. Perfect for code reviews, document comparison, and content analysis.',
+    zh: '并排比较两个文本文档，详细视觉高亮显示添加、删除和修改内容。适用于代码审查、文档比较和内容分析。'
   },
   icon: 'git-compare',
   category: 'diff',

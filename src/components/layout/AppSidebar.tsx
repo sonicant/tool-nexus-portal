@@ -1,7 +1,8 @@
-import { Home } from 'lucide-react';
+import { Home, Star } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { useI18n } from '@/hooks/useI18n';
-import { categories, getToolsByCategory } from '@/registry/toolRegistry';
+import { useFavorites } from '@/hooks/useFavorites';
+import { categories, getToolsByCategory, getToolById } from '@/registry/toolRegistry';
 import {
   Sidebar,
   SidebarContent,
@@ -16,7 +17,7 @@ import {
 } from '@/components/ui/sidebar';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { ChevronDown } from 'lucide-react';
-import { Hash, Cog, ArrowRightLeft, GitCompare, Network } from 'lucide-react';
+import { Hash, Cog, ArrowRightLeft, GitCompare, Network, QrCode, Link as LinkIcon } from 'lucide-react';
 
 const iconMap = {
   hash: Hash,
@@ -24,10 +25,13 @@ const iconMap = {
   'arrow-right-left': ArrowRightLeft,
   'git-compare': GitCompare,
   network: Network,
+  'qr-code': QrCode,
+  link: LinkIcon,
 };
 
 export const AppSidebar = () => {
   const { language } = useI18n();
+  const { favorites } = useFavorites();
   const location = useLocation();
   const { state } = useSidebar();
   
@@ -47,9 +51,55 @@ export const AppSidebar = () => {
       </SidebarHeader>
       
       <SidebarContent>
+        {/* Favorites Section */}
+        {favorites.length > 0 && (
+          <Collapsible defaultOpen className="group/collapsible">
+            <SidebarGroup>
+              <SidebarGroupLabel asChild>
+                <CollapsibleTrigger className="flex w-full items-center gap-2 p-2 hover:bg-sidebar-accent rounded-md">
+                  <Star className="h-4 w-4" />
+                  {state !== "collapsed" && (
+                    <>
+                      <span className="flex-1 text-left">Your Favorites</span>
+                      <ChevronDown className="h-4 w-4 transition-transform group-data-[state=closed]/collapsible:rotate-[-90deg]" />
+                    </>
+                  )}
+                </CollapsibleTrigger>
+              </SidebarGroupLabel>
+              
+              <CollapsibleContent>
+                <SidebarGroupContent>
+                  <SidebarMenu>
+                    {favorites.map((toolId) => {
+                      const tool = getToolById(toolId);
+                      if (!tool) return null;
+                      
+                      const ToolIcon = iconMap[tool.icon as keyof typeof iconMap] || Hash;
+                      const isActive = location.pathname === tool.path;
+                      
+                      return (
+                        <SidebarMenuItem key={tool.id}>
+                          <SidebarMenuButton 
+                            asChild 
+                            isActive={isActive}
+                            tooltip={state === "collapsed" ? tool.name[language] : undefined}
+                          >
+                            <Link to={tool.path}>
+                              <ToolIcon className="h-4 w-4" />
+                              <span>{tool.name[language]}</span>
+                            </Link>
+                          </SidebarMenuButton>
+                        </SidebarMenuItem>
+                      );
+                    })}
+                  </SidebarMenu>
+                </SidebarGroupContent>
+              </CollapsibleContent>
+            </SidebarGroup>
+          </Collapsible>
+        )}
         {categories.map((category) => {
           const categoryTools = getToolsByCategory(category.id);
-          const IconComponent = iconMap[category.icon as keyof typeof iconMap] || Hash;
           
           if (categoryTools.length === 0) return null;
           
@@ -58,7 +108,6 @@ export const AppSidebar = () => {
               <SidebarGroup>
                 <SidebarGroupLabel asChild>
                   <CollapsibleTrigger className="flex w-full items-center gap-2 p-2 hover:bg-sidebar-accent rounded-md">
-                    <IconComponent className="h-4 w-4" />
                     {state !== "collapsed" && (
                       <>
                         <span className="flex-1 text-left">{category.name[language]}</span>

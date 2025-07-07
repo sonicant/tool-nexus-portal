@@ -4,6 +4,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { useI18n } from '@/hooks/useI18n';
 import { GitCompare } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { HomeButton } from '@/components/ui/home-button';
 
 // JSON diff utility
 const diffJson = (obj1: any, obj2: any, path = ''): Array<{ type: 'added' | 'removed' | 'changed'; path: string; oldValue?: any; newValue?: any }> => {
@@ -87,14 +88,17 @@ export const JsonDiffTool = () => {
 
   return (
     <div className="container mx-auto py-8 space-y-6">
-      <div className="flex items-center space-x-3 mb-8">
-        <div className="p-3 bg-gradient-primary rounded-xl shadow-primary">
-          <GitCompare className="h-6 w-6 text-white" />
+      <div className="flex items-center justify-between mb-8">
+        <div className="flex items-center space-x-3">
+          <div className="p-3 bg-gradient-primary rounded-xl shadow-primary">
+            <GitCompare className="h-6 w-6 text-white" />
+          </div>
+          <div>
+            <h1 className="text-3xl font-bold">{t('tools.jsonDiff.name')}</h1>
+            <p className="text-muted-foreground">{t('tools.jsonDiff.description')}</p>
+          </div>
         </div>
-        <div>
-          <h1 className="text-3xl font-bold">{t('tools.jsonDiff.name')}</h1>
-          <p className="text-muted-foreground">{t('tools.jsonDiff.description')}</p>
-        </div>
+        <HomeButton />
       </div>
 
       <div className="grid md:grid-cols-2 gap-6 mb-6">

@@ -7,8 +7,8 @@ export const jsonXmlConverterMeta: Omit<ToolMeta, 'component'> = {
     zh: 'JSON ↔ XML'
   },
   description: {
-    en: 'Convert between JSON and XML formats bidirectionally',
-    zh: 'JSON和XML格式双向转换'
+    en: 'Seamlessly convert between JSON and XML formats with syntax highlighting and customizable indentation. Preserves data types and handles complex nested structures with validation.',
+    zh: '在JSON和XML格式之间无缝转换，支持语法高亮和可自定义缩进。保留数据类型并处理复杂嵌套结构，带有验证功能。'
   },
   icon: 'arrow-right-left',
   category: 'converter',
