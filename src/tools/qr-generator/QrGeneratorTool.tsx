@@ -7,6 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { useI18n } from '@/hooks/useI18n';
 import { QrCode, Download } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { HomeButton } from '@/components/ui/home-button';
 import QRCode from 'qrcode';
 
 export const QrGeneratorTool = () => {
@@ -90,14 +91,24 @@ export const QrGeneratorTool = () => {
 
   return (
     <div className="container mx-auto py-8 space-y-6">
+      <div className="flex items-center justify-between mb-8">
+        <div className="flex items-center space-x-3">
+          <div className="p-3 bg-gradient-primary rounded-xl shadow-primary">
+            <QrCode className="h-6 w-6 text-white" />
+          </div>
+          <div>
+            <h1 className="text-3xl font-bold">{t('tools.qrGenerator.name')}</h1>
+            <p className="text-muted-foreground">{t('tools.qrGenerator.description')}</p>
+          </div>
+        </div>
+        <HomeButton />
+      </div>
+      
       <Card>
         <CardHeader>
-          <div className="flex items-center space-x-2">
-            <QrCode className="h-6 w-6" />
-            <CardTitle>{t('tools.qrGenerator.name')}</CardTitle>
-          </div>
+          <CardTitle>QR Code Configuration</CardTitle>
           <CardDescription>
-            {t('tools.qrGenerator.description')}
+            Configure your QR code settings below
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">

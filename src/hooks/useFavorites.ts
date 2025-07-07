@@ -1,4 +1,4 @@
-import { useState, useEffect, createContext, useContext } from 'react';
+import { useState, useEffect, createContext, useContext, createElement } from 'react';
 import type { ReactNode } from 'react';
 
 interface FavoritesContextType {
@@ -80,9 +80,5 @@ interface FavoritesProviderProps {
 export const FavoritesProvider = ({ children }: FavoritesProviderProps) => {
   const favoritesState = useFavoritesProvider();
 
-  return (
-    <FavoritesContext.Provider value={favoritesState}>
-      {children}
-    </FavoritesContext.Provider>
-  );
+  return createElement(FavoritesContext.Provider, { value: favoritesState }, children);
 };
