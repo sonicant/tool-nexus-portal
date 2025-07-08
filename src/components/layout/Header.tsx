@@ -51,7 +51,7 @@ export const Header = () => {
             asChild
           >
             <a
-              href="https://github.com/your-repo/it-tools"
+              href="https://github.com/sonicant/tool-nexus-portal"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center space-x-2"
