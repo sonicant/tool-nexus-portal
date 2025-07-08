@@ -10,7 +10,7 @@ export const HomeButton = () => {
     <Button asChild variant="outline" size="sm">
       <Link to="/" className="flex items-center gap-2">
         <Home className="h-4 w-4" />
-        {t('common.home')}
+        {t('Home')}
       </Link>
     </Button>
   );

@@ -1,73 +1,164 @@
-# Welcome to your Lovable project
+# 🛠️ Tool Nexus Portal
 
-## Project info
+> A comprehensive collection of essential IT tools for developers, system administrators, and tech enthusiasts.
 
-**URL**: https://lovable.dev/projects/c76d21dc-c53c-48ac-9527-8d6e13fdeb83
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![React](https://img.shields.io/badge/React-20232A?logo=react&logoColor=61DAFB)](https://reactjs.org/)
+[![Vite](https://img.shields.io/badge/Vite-646CFF?logo=vite&logoColor=white)](https://vitejs.dev/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 
-## How can I edit this code?
+[🇨🇳 中文文档](./README_zh.md) | [🤝 Contributing](./CONTRIBUTING.md) | [📋 Code of Conduct](./CODE_OF_CONDUCT.md)
 
-There are several ways of editing your application.
+## ✨ Features
 
-**Use Lovable**
+- 🎯 **All-in-One Platform**: Multiple essential IT tools in a single, unified interface
+- 🌐 **Multilingual Support**: Full internationalization with English and Chinese support
+- 🎨 **Modern UI/UX**: Beautiful, responsive design built with shadcn/ui and Tailwind CSS
+- ⚡ **High Performance**: Fast and efficient tools powered by React and Vite
+- 🔧 **Developer Friendly**: Clean, maintainable code with TypeScript
+- 📱 **Mobile Responsive**: Works seamlessly across all devices
+- 🌙 **Dark Mode**: Built-in theme switching support
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/c76d21dc-c53c-48ac-9527-8d6e13fdeb83) and start prompting.
+## 🛠️ Available Tools
 
-Changes made via Lovable will be committed automatically to this repo.
+### 🔄 Converters & Encoders
+- **JSON/XML Converter**: Convert between JSON and XML formats
+- **URL Encoder/Decoder**: Encode and decode URLs safely
+- **Text Hash Generator**: Generate MD5, SHA1, SHA256, and Base64 hashes
 
-**Use your preferred IDE**
+### 🔍 Utilities
+- **JSON Diff Checker**: Compare and visualize differences between JSON objects
+- **Text Diff Checker**: Compare text files and highlight differences
+- **UUID Generator**: Generate various types of UUIDs
+- **QR Code Generator**: Create customizable QR codes with color options
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### 🌐 Network Tools
+- **Subnet Calculator**: Calculate network subnets and IP ranges
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+*More tools are continuously being added!*
 
-Follow these steps:
+## 🚀 Quick Start
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+### Prerequisites
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+- Node.js 18+ and npm (recommended: install with [nvm](https://github.com/nvm-sh/nvm))
+- Git
 
-# Step 3: Install the necessary dependencies.
-npm i
+### Installation
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+```bash
+# Clone the repository
+git clone https://github.com/your-username/tool-nexus-portal.git
+
+# Navigate to project directory
+cd tool-nexus-portal
+
+# Install dependencies
+npm install
+
+# Start development server
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+The application will be available at `http://localhost:8080`
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### Build for Production
 
-**Use GitHub Codespaces**
+```bash
+# Build the project
+npm run build
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+# Preview the build
+npm run preview
+```
 
-## What technologies are used for this project?
+## 🏗️ Project Structure
 
-This project is built with:
+```
+src/
+├── components/          # Reusable UI components
+│   ├── layout/         # Layout components (Header, Footer, etc.)
+│   └── ui/             # shadcn/ui components
+├── hooks/              # Custom React hooks
+├── i18n/               # Internationalization
+├── pages/              # Page components
+├── tools/              # Individual tool implementations
+│   ├── json-diff/
+│   ├── qr-generator/
+│   └── ...
+├── registry/           # Tool registry and routing
+├── types/              # TypeScript type definitions
+└── lib/                # Utility functions
+```
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## 🛠️ Tech Stack
 
-## How can I deploy this project?
+- **Frontend Framework**: React 18 with TypeScript
+- **Build Tool**: Vite
+- **Styling**: Tailwind CSS + shadcn/ui
+- **Routing**: React Router DOM
+- **State Management**: React Hooks
+- **Internationalization**: Custom i18n implementation
+- **Icons**: Lucide React
+- **Code Quality**: ESLint + TypeScript
 
-Simply open [Lovable](https://lovable.dev/projects/c76d21dc-c53c-48ac-9527-8d6e13fdeb83) and click on Share -> Publish.
+## 🤝 Contributing
 
-## Can I connect a custom domain to my Lovable project?
+We welcome contributions from the community! Please read our [Contributing Guide](./CONTRIBUTING.md) to get started.
 
-Yes, you can!
+### Quick Contribution Steps
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feature/amazing-tool`
+3. Make your changes and add tests
+4. Commit your changes: `git commit -m 'Add amazing new tool'`
+5. Push to the branch: `git push origin feature/amazing-tool`
+6. Open a Pull Request
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+## 📝 Adding New Tools
+
+To add a new tool to the platform:
+
+1. Create a new directory in `src/tools/your-tool-name/`
+2. Implement your tool component following the existing patterns
+3. Create a `meta.ts` file with tool metadata
+4. Register your tool in `src/registry/toolRegistry.ts`
+5. Add translations in `src/i18n/translations.ts`
+
+See our [Coding Standards](./CODING_STANDARDS.md) for detailed guidelines.
+
+## 🌐 Internationalization
+
+The project supports multiple languages:
+
+- **English** (default)
+- **Chinese (Simplified)**
+
+To add a new language, update the translations in `src/i18n/translations.ts`.
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- [shadcn/ui](https://ui.shadcn.com/) for the beautiful UI components
+- [Lucide](https://lucide.dev/) for the icon set
+- [Tailwind CSS](https://tailwindcss.com/) for the utility-first CSS framework
+- All contributors who help make this project better
+
+## 📞 Support
+
+If you have any questions or need help:
+
+- 📧 Create an [Issue](https://github.com/your-username/tool-nexus-portal/issues)
+- 💬 Start a [Discussion](https://github.com/your-username/tool-nexus-portal/discussions)
+- 📖 Check our [Documentation](https://github.com/your-username/tool-nexus-portal/wiki)
+
+---
+
+<div align="center">
+  <p>Made with ❤️ by the Tool Nexus Portal team</p>
+  <p>⭐ Star this repository if you find it helpful!</p>
+</div>
