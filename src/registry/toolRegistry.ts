@@ -9,6 +9,7 @@ import { JsonXmlConverterTool } from '@/tools/json-xml-converter/JsonXmlConverte
 import { UrlEncoderTool } from '@/tools/url-encoder/UrlEncoderTool';
 import { SubnetCalculatorTool } from '@/tools/subnet-calculator/SubnetCalculatorTool';
 import { QrGeneratorTool } from '@/tools/qr-generator/QrGeneratorTool';
+import { DnsQueryTool } from '@/tools/dns-query/DnsQueryTool';
 
 // Import tool metadata
 import { textHashMeta } from '@/tools/text-hash/meta';
@@ -19,6 +20,7 @@ import { jsonXmlConverterMeta } from '@/tools/json-xml-converter/meta';
 import { urlEncoderMeta } from '@/tools/url-encoder/meta';
 import { subnetCalculatorMeta } from '@/tools/subnet-calculator/meta';
 import { qrGeneratorMeta } from '@/tools/qr-generator/meta';
+import { dnsQueryMeta } from '@/tools/dns-query/meta';
 
 export const categories: ToolCategory[] = [
   {
@@ -95,6 +97,10 @@ export const tools: ToolMeta[] = [
   {
     ...qrGeneratorMeta,
     component: QrGeneratorTool
+  },
+  {
+    ...dnsQueryMeta,
+    component: DnsQueryTool
   }
 ];
 
