@@ -10,6 +10,9 @@
 
 [🇨🇳 中文文档](./README_zh.md) | [🤝 Contributing](./CONTRIBUTING.md) | [📋 Code of Conduct](./CODE_OF_CONDUCT.md)
 
+[🌍 Online version](https://tool-nexus-portal.lovable.app/)
+
+
 ## ✨ Features
 
 - 🎯 **All-in-One Platform**: Multiple essential IT tools in a single, unified interface
