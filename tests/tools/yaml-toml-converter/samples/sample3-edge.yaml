@@ -1,0 +1,21 @@
+# Special characters and edge cases
+name: "Test \"quoted\" string"
+unicode: "こんにちは"
+multiline: |
+  This is a
+  multiline string
+  with line breaks
+numbers:
+  integer: 42
+  float: 3.14159
+  negative: -17
+  zero: 0
+special_chars:
+  backslash: "C:\\Users\\test"
+  at_symbol: "test@example.com"
+  url: "https://example.com/path?param=value"
+empty_values:
+  null_value: null
+  empty_string: ""
+  empty_array: []
+  empty_object: {}

@@ -1,0 +1,9 @@
+name = "Sample Application"
+version = "1.0.0"
+enabled = true
+port = 8080
+items = ["item1", "item2", "item3"]
+
+[config]
+debug = false
+timeout = 30

@@ -1,0 +1,4 @@
+# Invalid TOML - missing quotes and value
+name = 
+[table
+key = "missing bracket"

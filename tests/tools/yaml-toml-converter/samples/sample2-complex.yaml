@@ -1,0 +1,20 @@
+database:
+  servers:
+    - name: "alpha"
+      ip: "10.0.0.1"
+      dc: "eqdc10"
+      ports: [8000, 8001, 8002]
+    - name: "beta"
+      ip: "10.0.0.2"
+      dc: "eqdc10"
+      ports: [8003, 8004]
+  connection_max: 5000
+  enabled: true
+
+clients:
+  data:
+    - ["gamma", "delta"]
+    - [1, 2]
+  hosts:
+    - "alpha"
+    - "omega"

@@ -1,0 +1,4 @@
+# Invalid YAML - missing colon
+name "invalid yaml"
+key1: value1
+  - item1 # incorrect indentation
