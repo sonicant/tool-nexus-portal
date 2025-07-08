@@ -10,6 +10,8 @@
 
 [🇺🇸 English](./README.md) | [🤝 贡献指南](./CONTRIBUTING.md) | [📋 行为准则](./CODE_OF_CONDUCT.md)
 
+[🌍 在线版](https://tool-nexus-portal.lovable.app/)
+
 ## ✨ 特性
 
 - 🎯 **一体化平台**：在统一界面中集成多个必备IT工具
