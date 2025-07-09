@@ -1,34 +1,32 @@
 import yaml from 'js-yaml';
 import toml from '@iarna/toml';
+import { ConversionOptions, ConversionResult } from './types';
 
 /**
  * 将 YAML 字符串转换为 TOML 格式
- * @param input - 输入的 YAML 字符串
- * @param indent - 缩进大小（默认为 2）
- * @returns 转换后的 TOML 字符串
- * @throws Error - 当输入的 YAML 格式无效时抛出 'Invalid YAML format' 错误
  */
-export const yamlToToml = (input: string, indent = 2): string => {
+export const yamlToToml = (input: string, options: ConversionOptions): ConversionResult => {
   try {
     const parsedYaml = yaml.load(input);
-    return toml.stringify(parsedYaml);
+    if (parsedYaml === null || parsedYaml === undefined) {
+      return { success: false, error: 'Invalid YAML format' };
+    }
+    const result = toml.stringify(parsedYaml as Record<string, any>);
+    return { success: true, data: result };
   } catch (error) {
-    throw new Error('Invalid YAML format');
+    return { success: false, error: 'Invalid YAML format' };
   }
 };
 
 /**
  * 将 TOML 字符串转换为 YAML 格式
- * @param input - 输入的 TOML 字符串
- * @param indent - 缩进大小（默认为 2）
- * @returns 转换后的 YAML 字符串
- * @throws Error - 当输入的 TOML 格式无效时抛出 'Invalid TOML format' 错误
  */
-export const tomlToYaml = (input: string, indent = 2): string => {
+export const tomlToYaml = (input: string, options: ConversionOptions): ConversionResult => {
   try {
     const parsedToml = toml.parse(input);
-    return yaml.dump(parsedToml, { indent: indent });
+    const result = yaml.dump(parsedToml, { indent: options.indentSize });
+    return { success: true, data: result };
   } catch (error) {
-    throw new Error('Invalid TOML format');
+    return { success: false, error: 'Invalid TOML format' };
   }
 };
