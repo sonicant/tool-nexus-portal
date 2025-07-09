@@ -279,6 +279,45 @@ export const DnsQueryTool = () => {
     return response;
   };
   
+  // Helper function to parse DNS name from binary data
+  const parseDnsName = (data: Uint8Array, offset: number): { name: string; newOffset: number } => {
+    const labels = [];
+    let currentOffset = offset;
+    let jumped = false;
+    let jumpOffset = 0;
+    
+    while (true) {
+      const length = data[currentOffset];
+      
+      if (length === 0) {
+        currentOffset++;
+        break;
+      }
+      
+      if ((length & 0xC0) === 0xC0) {
+        // DNS compression pointer
+        if (!jumped) {
+          jumpOffset = currentOffset + 2;
+          jumped = true;
+        }
+        currentOffset = ((length & 0x3F) << 8) | data[currentOffset + 1];
+      } else {
+        // Regular label
+        currentOffset++;
+        const label = Array.from(data.slice(currentOffset, currentOffset + length))
+          .map(b => String.fromCharCode(b))
+          .join('');
+        labels.push(label);
+        currentOffset += length;
+      }
+    }
+    
+    return {
+      name: labels.join('.'),
+      newOffset: jumped ? jumpOffset : currentOffset
+    };
+  };
+
   // Helper function to parse a single resource record
   const parseResourceRecord = (data: Uint8Array, offset: number): { record: DnsRecord; newOffset: number } | null => {
     try {
@@ -310,11 +349,27 @@ export const DnsQueryTool = () => {
           parts.push(((data[offset + i * 2] << 8) | data[offset + i * 2 + 1]).toString(16));
         }
         rdata = parts.join(':');
+      } else if (type === 5) { // CNAME record
+        const parsed = parseDnsName(data, offset);
+        rdata = parsed.name;
+      } else if (type === 15) { // MX record
+        const priority = (data[offset] << 8) | data[offset + 1];
+        const parsed = parseDnsName(data, offset + 2);
+        rdata = `${priority} ${parsed.name}`;
+      } else if (type === 2) { // NS record
+        const parsed = parseDnsName(data, offset);
+        rdata = parsed.name;
+      } else if (type === 16) { // TXT record
+        const txtLength = data[offset];
+        rdata = Array.from(data.slice(offset + 1, offset + 1 + txtLength))
+          .map(b => String.fromCharCode(b))
+          .join('');
       } else {
-        // For other types, convert to hex string
-        rdata = Array.from(data.slice(offset, offset + rdlength))
+        // For other types, convert to hex string with explanation
+        const hexData = Array.from(data.slice(offset, offset + rdlength))
           .map(b => b.toString(16).padStart(2, '0'))
           .join('');
+        rdata = `${hexData} (原始十六进制数据)`;
       }
       
       offset += rdlength;
