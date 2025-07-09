@@ -176,9 +176,27 @@ export const DnsQueryTool = () => {
 
       let data: DnsResponse;
       if (provider === 'cloudflare') {
-        // Cloudflare returns binary DNS response, need to parse it
-        const arrayBuffer = await response.arrayBuffer();
-        data = parseDnsResponse(new Uint8Array(arrayBuffer));
+        // Cloudflare returns binary DNS response in wireformat
+        const contentType = response.headers.get('content-type');
+        if (contentType?.includes('application/dns-message')) {
+          // Binary wireformat response
+          const arrayBuffer = await response.arrayBuffer();
+          data = parseDnsResponse(new Uint8Array(arrayBuffer));
+        } else {
+          // Fallback: try to parse as text (hex encoded)
+          const text = await response.text();
+          if (text.match(/^[0-9a-fA-F\s]+$/)) {
+            // Convert hex string to binary
+            const hexString = text.replace(/\s/g, '');
+            const bytes = new Uint8Array(hexString.length / 2);
+            for (let i = 0; i < hexString.length; i += 2) {
+              bytes[i / 2] = parseInt(hexString.substr(i, 2), 16);
+            }
+            data = parseDnsResponse(bytes);
+          } else {
+            throw new Error('Invalid response format from Cloudflare');
+          }
+        }
       } else {
         data = await response.json();
       }
