@@ -1,32 +1,45 @@
 import yaml from 'js-yaml';
-import toml from '@iarna/toml';
-import { ConversionOptions, ConversionResult } from './types';
+import TOML from '@ltd/j-toml';
+import { ConversionResult, ConversionOptions } from './types';
 
 /**
  * 将 YAML 字符串转换为 TOML 格式
+ * @param input - 输入的 YAML 字符串
+ * @param options - 转换选项，包括 indentSize
+ * @returns ConversionResult 对象，包含 success、data 或 error
  */
 export const yamlToToml = (input: string, options: ConversionOptions): ConversionResult => {
   try {
     const parsedYaml = yaml.load(input);
-    if (parsedYaml === null || parsedYaml === undefined) {
-      return { success: false, error: 'Invalid YAML format' };
-    }
-    const result = toml.stringify(parsedYaml as Record<string, any>);
-    return { success: true, data: result };
+    const data = TOML.stringify(parsedYaml as any, {
+      newline: '\n',
+      indent: options.indentSize,
+      integer: Number.MAX_SAFE_INTEGER,
+    });
+    return { success: true, data };
   } catch (error) {
-    return { success: false, error: 'Invalid YAML format' };
+    const message = error instanceof Error ? error.message : 'Invalid YAML format';
+    return { success: false, error: message };
   }
 };
 
 /**
  * 将 TOML 字符串转换为 YAML 格式
+ * @param input - 输入的 TOML 字符串
+ * @param options - 转换选项，包括 indentSize
+ * @returns ConversionResult 对象，包含 success、data 或 error
  */
 export const tomlToYaml = (input: string, options: ConversionOptions): ConversionResult => {
   try {
-    const parsedToml = toml.parse(input);
-    const result = yaml.dump(parsedToml, { indent: options.indentSize });
-    return { success: true, data: result };
+    // @ts-ignore
+    const parsedToml = TOML.parse(input, {
+      joiner: '\n',
+      bigint: false,
+    });
+    const data = yaml.dump(parsedToml, { indent: options.indentSize });
+    return { success: true, data };
   } catch (error) {
-    return { success: false, error: 'Invalid TOML format' };
+    const message = error instanceof Error ? error.message : 'Invalid TOML format';
+    return { success: false, error: message };
   }
 };

@@ -70,6 +70,12 @@ export const translations: Translations = {
         urlToEncode: 'URL to Encode',
         urlToDecode: 'URL to Decode'
       },
+      yamlTomlConverter: {
+        name: 'YAML ↔ TOML',
+        description: 'Convert between YAML and TOML formats with syntax highlighting and validation. Supports complex data structures, arrays, and nested objects with customizable formatting options.',
+        yamlToToml: 'YAML to TOML',
+        tomlToYaml: 'TOML to YAML'
+      },
       subnetCalculator: {
         name: 'Subnet Calculator',
         description: 'Calculate network subnets, CIDR, and IP ranges',
@@ -202,6 +208,12 @@ export const translations: Translations = {
         description: '正确格式化编码和解码URL',
         urlToEncode: '待编码URL',
         urlToDecode: '待解码URL'
+      },
+      yamlTomlConverter: {
+        name: 'YAML ↔ TOML',
+        description: '在YAML和TOML格式之间转换，支持语法高亮和验证。支持复杂数据结构、数组和嵌套对象，提供可自定义的格式化选项。',
+        yamlToToml: 'YAML 转 TOML',
+        tomlToYaml: 'TOML 转 YAML'
       },
       subnetCalculator: {
         name: '子网计算器',
