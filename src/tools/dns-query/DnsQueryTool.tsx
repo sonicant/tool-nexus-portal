@@ -80,6 +80,53 @@ export const DnsQueryTool = () => {
     return domainRegex.test(domain);
   };
 
+  // Helper function to create DNS query in wireformat and encode to base64
+  const createDnsQuery = (domain: string, type: number): string => {
+    // Simple DNS query packet construction
+    const labels = domain.split('.');
+    let query = new Uint8Array(12 + domain.length + 2 + 4); // Header + QNAME + QTYPE + QCLASS
+    let offset = 0;
+    
+    // DNS Header (12 bytes)
+    const id = Math.floor(Math.random() * 65536);
+    query[offset++] = (id >> 8) & 0xFF;
+    query[offset++] = id & 0xFF;
+    query[offset++] = 0x01; // QR=0, Opcode=0, AA=0, TC=0, RD=1
+    query[offset++] = 0x00; // RA=0, Z=0, RCODE=0
+    query[offset++] = 0x00; // QDCOUNT high byte
+    query[offset++] = 0x01; // QDCOUNT low byte (1 question)
+    query[offset++] = 0x00; // ANCOUNT high byte
+    query[offset++] = 0x00; // ANCOUNT low byte
+    query[offset++] = 0x00; // NSCOUNT high byte
+    query[offset++] = 0x00; // NSCOUNT low byte
+    query[offset++] = 0x00; // ARCOUNT high byte
+    query[offset++] = 0x00; // ARCOUNT low byte
+    
+    // QNAME
+    for (const label of labels) {
+      query[offset++] = label.length;
+      for (let i = 0; i < label.length; i++) {
+        query[offset++] = label.charCodeAt(i);
+      }
+    }
+    query[offset++] = 0x00; // End of QNAME
+    
+    // QTYPE
+    query[offset++] = (type >> 8) & 0xFF;
+    query[offset++] = type & 0xFF;
+    
+    // QCLASS (IN = 1)
+    query[offset++] = 0x00;
+    query[offset++] = 0x01;
+    
+    // Convert to base64
+    let binary = '';
+    for (let i = 0; i < offset; i++) {
+      binary += String.fromCharCode(query[i]);
+    }
+    return btoa(binary).replace(/\+/g, '-').replace(/\//g, '_').replace(/=/g, '');
+  };
+
   const queryDNS = async () => {
     if (!domain.trim()) {
       toast({
@@ -110,12 +157,13 @@ export const DnsQueryTool = () => {
       let url: string;
       
       if (provider === 'google') {
-        // Google DNS uses different parameter format
+        // Google DNS uses JSON API format
         url = `${providerConfig.url}?name=${encodeURIComponent(domain)}&type=${recordType}`;
-      } else {
-        // Cloudflare uses numeric type and requires specific headers
-        url = `${providerConfig.url}?name=${encodeURIComponent(domain)}&type=${typeCode}`;
-        headers['Accept'] = 'application/dns-json';
+      } else if (provider === 'cloudflare') {
+        // Cloudflare uses DNS wireformat with base64 encoding
+        const dnsQuery = createDnsQuery(domain, typeCode);
+        url = `${providerConfig.url}?dns=${dnsQuery}`;
+        headers['Accept'] = 'application/dns-message';
       }
       
       const response = await fetch(url, {
@@ -126,7 +174,15 @@ export const DnsQueryTool = () => {
         throw new Error(`HTTP ${response.status}: ${response.statusText}`);
       }
 
-      const data: DnsResponse = await response.json();
+      let data: DnsResponse;
+      if (provider === 'cloudflare') {
+        // Cloudflare returns binary DNS response, need to parse it
+        const arrayBuffer = await response.arrayBuffer();
+        data = parseDnsResponse(new Uint8Array(arrayBuffer));
+      } else {
+        data = await response.json();
+      }
+      
       const endTime = Date.now();
       
       setResult(data);
@@ -145,6 +201,118 @@ export const DnsQueryTool = () => {
       });
     } finally {
       setLoading(false);
+    }
+  };
+
+  // Helper function to parse DNS response from binary format
+  const parseDnsResponse = (data: Uint8Array): DnsResponse => {
+    let offset = 0;
+    
+    // Parse DNS header
+    const id = (data[offset] << 8) | data[offset + 1];
+    offset += 2;
+    const flags = (data[offset] << 8) | data[offset + 1];
+    offset += 2;
+    const qdcount = (data[offset] << 8) | data[offset + 1];
+    offset += 2;
+    const ancount = (data[offset] << 8) | data[offset + 1];
+    offset += 2;
+    const nscount = (data[offset] << 8) | data[offset + 1];
+    offset += 2;
+    const arcount = (data[offset] << 8) | data[offset + 1];
+    offset += 2;
+    
+    const response: DnsResponse = {
+      Status: flags & 0x0F, // RCODE
+      TC: (flags & 0x0200) !== 0,
+      RD: (flags & 0x0100) !== 0,
+      RA: (flags & 0x0080) !== 0,
+      AD: (flags & 0x0020) !== 0,
+      CD: (flags & 0x0010) !== 0,
+      Question: [],
+      Answer: [],
+      Authority: [],
+      Additional: []
+    };
+    
+    // Skip questions section for simplicity
+    for (let i = 0; i < qdcount; i++) {
+      // Skip QNAME
+      while (data[offset] !== 0) {
+        if ((data[offset] & 0xC0) === 0xC0) {
+          offset += 2;
+          break;
+        }
+        offset += data[offset] + 1;
+      }
+      if (data[offset] === 0) offset++;
+      offset += 4; // Skip QTYPE and QCLASS
+    }
+    
+    // Parse answer records
+    for (let i = 0; i < ancount; i++) {
+      const record = parseResourceRecord(data, offset);
+      if (record) {
+        response.Answer!.push(record.record);
+        offset = record.newOffset;
+      }
+    }
+    
+    return response;
+  };
+  
+  // Helper function to parse a single resource record
+  const parseResourceRecord = (data: Uint8Array, offset: number): { record: DnsRecord; newOffset: number } | null => {
+    try {
+      // Skip NAME (simplified - assume compression)
+      if ((data[offset] & 0xC0) === 0xC0) {
+        offset += 2;
+      } else {
+        while (data[offset] !== 0) {
+          offset += data[offset] + 1;
+        }
+        offset++;
+      }
+      
+      const type = (data[offset] << 8) | data[offset + 1];
+      offset += 2;
+      const cls = (data[offset] << 8) | data[offset + 1];
+      offset += 2;
+      const ttl = (data[offset] << 24) | (data[offset + 1] << 16) | (data[offset + 2] << 8) | data[offset + 3];
+      offset += 4;
+      const rdlength = (data[offset] << 8) | data[offset + 1];
+      offset += 2;
+      
+      let rdata = '';
+      if (type === 1) { // A record
+        rdata = `${data[offset]}.${data[offset + 1]}.${data[offset + 2]}.${data[offset + 3]}`;
+      } else if (type === 28) { // AAAA record
+        const parts = [];
+        for (let i = 0; i < 8; i++) {
+          parts.push(((data[offset + i * 2] << 8) | data[offset + i * 2 + 1]).toString(16));
+        }
+        rdata = parts.join(':');
+      } else {
+        // For other types, convert to hex string
+        rdata = Array.from(data.slice(offset, offset + rdlength))
+          .map(b => b.toString(16).padStart(2, '0'))
+          .join('');
+      }
+      
+      offset += rdlength;
+      
+      return {
+        record: {
+          name: domain,
+          type,
+          TTL: ttl,
+          data: rdata
+        },
+        newOffset: offset
+      };
+    } catch (error) {
+      console.error('Error parsing resource record:', error);
+      return null;
     }
   };
 

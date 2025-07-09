@@ -16,9 +16,14 @@ export default defineConfig(({ mode }) => ({
           secure: true
         },
         '/api/dns-cloudflare': {
-          target: 'https://cloudflare-dns.com',
+          target: 'https://cloudflare-dns.com/dns-query',
           changeOrigin: true,
-          rewrite: (path) => path.replace(/^\/api\/dns-cloudflare/, '/dns-query'),
+          rewrite: (path) => path.replace(/^\/api\/dns-cloudflare/, ''),
+          configure: (proxy, options) => {
+            proxy.on('proxyReq', (proxyReq, req, res) => {
+              proxyReq.setHeader('Accept', 'application/dns-message');
+            });
+          },
           secure: true
         }
       }
