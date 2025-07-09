@@ -8,6 +8,25 @@ export default defineConfig(({ mode }) => ({
   server: {
     host: "::",
     port: 8080,
+    proxy: {
+        '/api/dns-google': {
+          target: 'https://dns.google',
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/api\/dns-google/, '/resolve'),
+          secure: true
+        },
+        '/api/dns-cloudflare': {
+          target: 'https://cloudflare-dns.com/dns-query',
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/api\/dns-cloudflare/, ''),
+          configure: (proxy, options) => {
+            proxy.on('proxyReq', (proxyReq, req, res) => {
+              proxyReq.setHeader('Accept', 'application/dns-message');
+            });
+          },
+          secure: true
+        }
+      }
   },
   plugins: [
     react(),

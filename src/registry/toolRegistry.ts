@@ -10,6 +10,7 @@ import { UrlEncoderTool } from '@/tools/url-encoder/UrlEncoderTool';
 import { SubnetCalculatorTool } from '@/tools/subnet-calculator/SubnetCalculatorTool';
 import { QrGeneratorTool } from '@/tools/qr-generator/QrGeneratorTool';
 import { YamlTomlConverterTool } from '@/tools/yaml-toml-converter/YamlTomlConverterTool';
+import { DnsQueryTool } from '@/tools/dns-query/DnsQueryTool';
 
 // Import tool metadata
 import { textHashMeta } from '@/tools/text-hash/meta';
@@ -21,6 +22,7 @@ import { urlEncoderMeta } from '@/tools/url-encoder/meta';
 import { subnetCalculatorMeta } from '@/tools/subnet-calculator/meta';
 import { qrGeneratorMeta } from '@/tools/qr-generator/meta';
 import { yamlTomlConverterMeta } from '@/tools/yaml-toml-converter/meta';
+import { dnsQueryMeta } from '@/tools/dns-query/meta';
 
 export const categories: ToolCategory[] = [
   {
@@ -101,6 +103,10 @@ export const tools: ToolMeta[] = [
   {
     ...qrGeneratorMeta,
     component: QrGeneratorTool
+  },
+  {
+    ...dnsQueryMeta,
+    component: DnsQueryTool
   }
 ];
 

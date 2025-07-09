@@ -83,6 +83,7 @@ export const AppSidebar = () => {
                             asChild 
                             isActive={isActive}
                             tooltip={state === "collapsed" ? tool.name[language] : undefined}
+                            className={isActive ? "bg-primary/20 text-primary border-l-2 border-primary" : ""}
                           >
                             <Link to={tool.path}>
                               <ToolIcon className="h-4 w-4" />
@@ -130,6 +131,7 @@ export const AppSidebar = () => {
                               asChild 
                               isActive={isActive}
                               tooltip={state === "collapsed" ? tool.name[language] : undefined}
+                              className={isActive ? "bg-primary/20 text-primary border-l-2 border-primary" : ""}
                             >
                               <Link to={tool.path}>
                                 <ToolIcon className="h-4 w-4" />

@@ -21,6 +21,9 @@ export const translations: Translations = {
       input: 'Input',
       output: 'Output',
       result: 'Result',
+      success: 'Success',
+      error: 'Error',
+      copied: 'Copied to clipboard',
       github: 'View on GitHub'
     },
     categories: {
@@ -103,6 +106,37 @@ export const translations: Translations = {
           Q: 'Q (~25% recovery)',
           H: 'H (~30% recovery)'
         }
+      },
+      dnsQuery: {
+        name: 'DNS Query Tool',
+        description: 'Query DNS records using DoH (DNS over HTTPS)',
+        domain: 'Domain Name',
+        domainPlaceholder: 'Enter domain name (e.g., example.com)',
+        recordType: 'Record Type',
+        provider: 'DoH Provider',
+        query: 'Query DNS',
+        querying: 'Querying...',
+        querySettings: 'Query Settings',
+        querySettingsDescription: 'Configure your DNS query parameters',
+        results: 'Query Results',
+        answers: 'Answer Records',
+        authority: 'Authority Records',
+        additional: 'Additional Records',
+        authenticated: 'DNSSEC Verified',
+        noRecords: 'No records found',
+        querySuccess: 'DNS query completed successfully',
+        queryError: 'Failed to query DNS records',
+        queryFailed: 'Query failed with status',
+        emptyDomainError: 'Please enter a domain name',
+        invalidDomainError: 'Please enter a valid domain name',
+        unknownError: 'Unknown error occurred',
+        statusCodes: {
+          '1': 'Format Error',
+          '2': 'Server Failure',
+          '3': 'Name Error (NXDOMAIN)',
+          '4': 'Not Implemented',
+          '5': 'Refused'
+        }
       }
     }
   },
@@ -126,6 +160,9 @@ export const translations: Translations = {
       input: '输入',
       output: '输出',
       result: '结果',
+      success: '成功',
+      error: '错误',
+      copied: '已复制',
       github: '在 GitHub 上查看'
     },
     categories: {
@@ -207,6 +244,37 @@ export const translations: Translations = {
           M: 'M (~15% 恢复)',
           Q: 'Q (~25% 恢复)',
           H: 'H (~30% 恢复)'
+        }
+      },
+      dnsQuery: {
+        name: 'DNS 查询工具',
+        description: '使用 DoH（DNS over HTTPS）查询 DNS 记录',
+        domain: '域名',
+        domainPlaceholder: '输入域名（例如：example.com）',
+        recordType: '记录类型',
+        provider: 'DoH 提供商',
+        query: '查询 DNS',
+        querying: '查询中...',
+        querySettings: '查询设置',
+        querySettingsDescription: '配置您的 DNS 查询参数',
+        results: '查询结果',
+        answers: '应答记录',
+        authority: '权威记录',
+        additional: '附加记录',
+        authenticated: 'DNSSEC 已验证',
+        noRecords: '未找到记录',
+        querySuccess: 'DNS 查询成功完成',
+        queryError: 'DNS 记录查询失败',
+        queryFailed: '查询失败，状态码',
+        emptyDomainError: '请输入域名',
+        invalidDomainError: '请输入有效的域名',
+        unknownError: '发生未知错误',
+        statusCodes: {
+          '1': '格式错误',
+          '2': '服务器故障',
+          '3': '域名不存在 (NXDOMAIN)',
+          '4': '未实现',
+          '5': '拒绝'
         }
       }
     }
