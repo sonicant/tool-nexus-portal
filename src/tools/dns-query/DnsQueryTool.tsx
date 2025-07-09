@@ -35,15 +35,11 @@ interface DnsResponse {
 const DOH_PROVIDERS = {
   google: {
     name: 'Google DNS',
-    url: import.meta.env.DEV ? '/api/dns-google' : 'https://dns.google/dns-query'
+    url: import.meta.env.DEV ? '/api/dns-google' : 'https://dns.google/resolve'
   },
   cloudflare: {
     name: 'Cloudflare DNS',
     url: import.meta.env.DEV ? '/api/dns-cloudflare' : 'https://cloudflare-dns.com/dns-query'
-  },
-  quad9: {
-    name: 'Quad9 DNS',
-    url: import.meta.env.DEV ? '/api/dns-quad9' : 'https://dns.quad9.net:5053/dns-query'
   }
 };
 
@@ -110,12 +106,20 @@ export const DnsQueryTool = () => {
       const providerConfig = DOH_PROVIDERS[provider as keyof typeof DOH_PROVIDERS];
       const typeCode = DNS_TYPES[recordType as keyof typeof DNS_TYPES];
       
-      const url = `${providerConfig.url}?name=${encodeURIComponent(domain)}&type=${typeCode}`;
+      const headers: Record<string, string> = {};
+      let url: string;
+      
+      if (provider === 'google') {
+        // Google DNS uses different parameter format
+        url = `${providerConfig.url}?name=${encodeURIComponent(domain)}&type=${recordType}`;
+      } else {
+        // Cloudflare uses numeric type and requires specific headers
+        url = `${providerConfig.url}?name=${encodeURIComponent(domain)}&type=${typeCode}`;
+        headers['Accept'] = 'application/dns-json';
+      }
       
       const response = await fetch(url, {
-        headers: {
-          'Accept': 'application/dns-json'
-        }
+        headers
       });
 
       if (!response.ok) {
