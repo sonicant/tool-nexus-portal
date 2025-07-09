@@ -21,7 +21,8 @@ export const YamlTomlConverterTool = () => {
   const [activeTab, setActiveTab] = useState('yaml-to-toml');
   const [yamlInput, setYamlInput] = useState('');
   const [tomlInput, setTomlInput] = useState('');
-  const [result, setResult] = useState('');
+  const [yamlToTomlResult, setYamlToTomlResult] = useState('');
+  const [tomlToYamlResult, setTomlToYamlResult] = useState('');
   const [indentSize, setIndentSize] = useState('2');
 
   const convertYamlToToml = () => {
@@ -43,7 +44,7 @@ export const YamlTomlConverterTool = () => {
     const conversionResult = yamlToToml(yamlInput, options);
     
     if (conversionResult.success && conversionResult.data) {
-      setResult(conversionResult.data);
+      setYamlToTomlResult(conversionResult.data);
     } else {
       toast({
         title: "Error",
@@ -72,7 +73,7 @@ export const YamlTomlConverterTool = () => {
     const conversionResult = tomlToYaml(tomlInput, options);
     
     if (conversionResult.success && conversionResult.data) {
-      setResult(conversionResult.data);
+      setTomlToYamlResult(conversionResult.data);
     } else {
       toast({
         title: "Error",
@@ -93,7 +94,8 @@ export const YamlTomlConverterTool = () => {
   const clearAll = () => {
     setYamlInput('');
     setTomlInput('');
-    setResult('');
+    setYamlToTomlResult('');
+    setTomlToYamlResult('');
   };
 
   return (
@@ -173,24 +175,26 @@ config:
               </CardHeader>
               <CardContent>
                 <div className="relative">
-                  {result ? (
+                  {yamlToTomlResult ? (
                     <div className="relative">
                       <SyntaxHighlighter
                         language="toml"
                         style={theme === 'dark' ? oneDark : oneLight}
+                        wrapLongLines={false}
                         customStyle={{
                           margin: 0,
                           borderRadius: '6px',
                           fontSize: '14px',
+                          overflowX: 'auto'
                         }}
                       >
-                        {result}
+                        {yamlToTomlResult}
                       </SyntaxHighlighter>
                       <Button
                         size="sm"
                         variant="outline"
                         className="absolute top-2 right-2"
-                        onClick={() => copyToClipboard(result)}
+                        onClick={() => copyToClipboard(yamlToTomlResult)}
                       >
                         <Copy className="h-4 w-4" />
                       </Button>
@@ -245,24 +249,26 @@ debug = true`}
               </CardHeader>
               <CardContent>
                 <div className="relative">
-                  {result ? (
+                  {tomlToYamlResult ? (
                     <div className="relative">
                       <SyntaxHighlighter
                         language="yaml"
                         style={theme === 'dark' ? oneDark : oneLight}
+                        wrapLongLines={false}
                         customStyle={{
                           margin: 0,
                           borderRadius: '6px',
                           fontSize: '14px',
+                          overflowX: 'auto'
                         }}
                       >
-                        {result}
+                        {tomlToYamlResult}
                       </SyntaxHighlighter>
                       <Button
                         size="sm"
                         variant="outline"
                         className="absolute top-2 right-2"
-                        onClick={() => copyToClipboard(result)}
+                        onClick={() => copyToClipboard(tomlToYamlResult)}
                       >
                         <Copy className="h-4 w-4" />
                       </Button>
