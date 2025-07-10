@@ -3,103 +3,113 @@
 @tailwind utilities;
 
 /* Professional IT Tools Design System */
+/* This file defines the design tokens and color scheme for the entire application */
 
 @layer base {
   :root {
     /* Core Colors - Professional Blue/Purple Gradient Theme */
-    --background: 240 5% 96%;
-    --foreground: 240 9% 9%;
+    /* Main page background and text colors */
+    --background: 240 5% 96%;              /* Light gray background for main content area */
+    --foreground: 240 9% 9%;               /* Dark text color for readability */
 
-    --card: 240 5% 98%;
-    --card-foreground: 240 9% 9%;
+    /* Tool cards and content containers */
+    --card: 240 5% 98%;                    /* Background for tool cards and content sections */
+    --card-foreground: 240 9% 9%;          /* Text color inside cards */
     
-    --sidebar: 240 5% 96%;
-    --sidebar-foreground: 240 9% 9%;
-    --sidebar-primary: 221 83% 53%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 4% 91%;
-    --sidebar-accent-foreground: 240 9% 9%;
-    --sidebar-border: 240 6% 90%;
-    --sidebar-ring: 221 83% 53%;
+    /* Left navigation sidebar colors */
+    --sidebar: 240 5% 96%;                 /* Sidebar background color */
+    --sidebar-foreground: 240 9% 9%;       /* Sidebar text color */
+    --sidebar-primary: 221 83% 53%;        /* Active/selected item color in sidebar */
+    --sidebar-primary-foreground: 0 0% 100%; /* Text color for active sidebar items */
+    --sidebar-accent: 240 4% 91%;          /* Hover state background for sidebar items */
+    --sidebar-accent-foreground: 240 9% 9%; /* Text color for hovered sidebar items */
+    --sidebar-border: 240 6% 90%;          /* Border color for sidebar elements */
+    --sidebar-ring: 221 83% 53%;           /* Focus ring color for sidebar items */
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 240 9% 9%;
+    /* Popup menus and tooltips */
+    --popover: 0 0% 100%;                  /* Background for dropdown menus and tooltips */
+    --popover-foreground: 240 9% 9%;       /* Text color in popups */
 
-    /* Primary - Modern Blue */
-    --primary: 221 83% 53%;
-    --primary-foreground: 0 0% 100%;
-    --primary-soft: 221 83% 98%;
-    --primary-hover: 221 83% 45%;
+    /* Primary brand color - Modern Blue */
+    --primary: 221 83% 53%;                /* Main brand color for buttons and accents */
+    --primary-foreground: 0 0% 100%;       /* Text color on primary colored elements */
+    --primary-soft: 221 83% 98%;           /* Light tint of primary for subtle backgrounds */
+    --primary-hover: 221 83% 45%;          /* Darker primary for hover states */
 
-    /* Secondary - Elegant Purple */
-    --secondary: 262 63% 57%;
-    --secondary-foreground: 0 0% 100%;
-    --secondary-soft: 262 63% 98%;
+    /* Secondary color - Elegant Purple */
+    --secondary: 262 63% 57%;              /* Secondary brand color for variety */
+    --secondary-foreground: 0 0% 100%;     /* Text color on secondary colored elements */
+    --secondary-soft: 262 63% 98%;         /* Light tint of secondary */
 
-    /* Accent - Vibrant Teal */
-    --accent: 189 94% 43%;
-    --accent-foreground: 0 0% 100%;
-    --accent-soft: 189 94% 98%;
+    /* Accent color - Vibrant Teal */
+    --accent: 189 94% 43%;                 /* Accent color for highlights and special elements */
+    --accent-foreground: 0 0% 100%;        /* Text color on accent colored elements */
+    --accent-soft: 189 94% 98%;            /* Light tint of accent */
 
-    /* Success - Fresh Green */
-    --success: 142 76% 36%;
-    --success-foreground: 0 0% 100%;
-    --success-soft: 142 76% 98%;
+    /* Status colors for user feedback */
+    /* Success state - Fresh Green */
+    --success: 142 76% 36%;                /* Green for success messages and positive actions */
+    --success-foreground: 0 0% 100%;       /* Text color on success elements */
+    --success-soft: 142 76% 98%;           /* Light green background */
 
-    /* Warning - Warm Orange */
-    --warning: 32 95% 44%;
-    --warning-foreground: 0 0% 100%;
-    --warning-soft: 32 95% 98%;
+    /* Warning state - Warm Orange */
+    --warning: 32 95% 44%;                 /* Orange for warning messages */
+    --warning-foreground: 0 0% 100%;       /* Text color on warning elements */
+    --warning-soft: 32 95% 98%;            /* Light orange background */
 
-    /* Destructive - Modern Red */
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 100%;
+    /* Error/Destructive state - Modern Red */
+    --destructive: 0 84% 60%;              /* Red for error messages and destructive actions */
+    --destructive-foreground: 0 0% 100%;   /* Text color on error elements */
 
-    /* Neutral Tones */
-    --muted: 240 4% 96%;
-    --muted-foreground: 240 4% 46%;
+    /* Neutral tones for subtle elements */
+    --muted: 240 4% 96%;                   /* Muted background for disabled or secondary content */
+    --muted-foreground: 240 4% 46%;        /* Muted text color for less important content */
 
-    --border: 240 6% 90%;
-    --input: 240 6% 90%;
-    --ring: 221 83% 53%;
+    /* Form and UI element colors */
+    --border: 240 6% 90%;                  /* Default border color for dividers and outlines */
+    --input: 240 6% 90%;                   /* Background color for input fields */
+    --ring: 221 83% 53%;                   /* Focus ring color for keyboard navigation */
 
-    /* Professional Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(221 83% 53%), hsl(262 63% 57%));
-    --gradient-hero: linear-gradient(135deg, hsl(221 83% 53%) 0%, hsl(262 63% 57%) 50%, hsl(189 94% 43%) 100%);
-    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%), hsl(240 5% 98%));
-    --gradient-glass: linear-gradient(145deg, rgba(255,255,255,0.9), rgba(255,255,255,0.1));
+    /* Professional gradient backgrounds */
+    --gradient-primary: linear-gradient(135deg, hsl(221 83% 53%), hsl(262 63% 57%));     /* Primary brand gradient */
+    --gradient-hero: linear-gradient(135deg, hsl(221 83% 53%) 0%, hsl(262 63% 57%) 50%, hsl(189 94% 43%) 100%); /* Hero section gradient */
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%), hsl(240 5% 98%));           /* Subtle card gradient */
+    --gradient-glass: linear-gradient(145deg, rgba(255,255,255,0.9), rgba(255,255,255,0.1)); /* Glass morphism effect */
 
-    /* Shadows & Effects */
-    --shadow-sm: 0 1px 2px 0 hsl(240 9% 9% / 0.05);
-    --shadow-md: 0 4px 6px -1px hsl(240 9% 9% / 0.1), 0 2px 4px -1px hsl(240 9% 9% / 0.06);
-    --shadow-lg: 0 10px 15px -3px hsl(240 9% 9% / 0.1), 0 4px 6px -2px hsl(240 9% 9% / 0.05);
-    --shadow-xl: 0 20px 25px -5px hsl(240 9% 9% / 0.1), 0 10px 10px -5px hsl(240 9% 9% / 0.04);
-    --shadow-primary: 0 10px 30px -10px hsl(221 83% 53% / 0.3);
-    --shadow-glow: 0 0 40px hsl(221 83% 53% / 0.2);
+    /* Shadow effects for depth and elevation */
+    --shadow-sm: 0 1px 2px 0 hsl(240 9% 9% / 0.05);                                    /* Small shadow for subtle elevation */
+    --shadow-md: 0 4px 6px -1px hsl(240 9% 9% / 0.1), 0 2px 4px -1px hsl(240 9% 9% / 0.06); /* Medium shadow for cards */
+    --shadow-lg: 0 10px 15px -3px hsl(240 9% 9% / 0.1), 0 4px 6px -2px hsl(240 9% 9% / 0.05); /* Large shadow for modals */
+    --shadow-xl: 0 20px 25px -5px hsl(240 9% 9% / 0.1), 0 10px 10px -5px hsl(240 9% 9% / 0.04); /* Extra large shadow */
+    --shadow-primary: 0 10px 30px -10px hsl(221 83% 53% / 0.3);                        /* Colored shadow with primary color */
+    --shadow-glow: 0 0 40px hsl(221 83% 53% / 0.2);                                    /* Glow effect with primary color */
 
-    /* Animations */
-    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-bounce: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    /* Animation and transition effects */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);                        /* Smooth easing for most transitions */
+    --transition-bounce: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);              /* Bouncy easing for playful interactions */
 
-    --radius: 0.75rem;
+    /* Border radius for consistent rounded corners */
+    --radius: 0.75rem;                     /* Default border radius for cards and buttons */
   }
 
   .dark {
-    /* Dark Mode Colors */
-    --background: 240 10% 3.9%;
-    --foreground: 240 5% 95%;
+    /* Dark Mode Colors - Inverted color scheme for dark theme */
+    --background: 240 10% 3.9%;            /* Dark background for main content area */
+    --foreground: 240 5% 95%;              /* Light text color for readability in dark mode */
 
-    --card: 240 10% 8%;
-    --card-foreground: 240 5% 95%;
+    /* Dark mode tool cards and content containers */
+    --card: 240 10% 8%;                    /* Dark background for tool cards and content sections */
+    --card-foreground: 240 5% 95%;         /* Light text color inside dark cards */
     
-    --sidebar: 240 10% 5%;
-    --sidebar-foreground: 240 5% 95%;
-    --sidebar-primary: 221 83% 58%;
-    --sidebar-primary-foreground: 240 10% 3.9%;
-    --sidebar-accent: 240 10% 10%;
-    --sidebar-accent-foreground: 240 5% 95%;
-    --sidebar-border: 240 10% 15%;
-    --sidebar-ring: 221 83% 58%;
+    /* Dark mode left navigation sidebar colors */
+    --sidebar: 240 10% 5%;                 /* Darker sidebar background */
+    --sidebar-foreground: 240 5% 95%;      /* Light sidebar text color */
+    --sidebar-primary: 221 83% 58%;        /* Brighter primary for better visibility in dark mode */
+    --sidebar-primary-foreground: 240 10% 3.9%; /* Dark text on bright primary background */
+    --sidebar-accent: 240 10% 10%;         /* Dark hover state background for sidebar items */
+    --sidebar-accent-foreground: 240 5% 95%; /* Light text color for hovered sidebar items */
+    --sidebar-border: 240 10% 15%;         /* Lighter border color for dark mode visibility */
+    --sidebar-ring: 221 83% 58%;           /* Bright focus ring for dark mode */
 
     --popover: 240 10% 5%;
     --popover-foreground: 240 5% 95%;

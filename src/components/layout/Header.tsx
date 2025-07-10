@@ -1,4 +1,5 @@
 import { Button } from '@/components/ui/button';
+import { SidebarTrigger } from '@/components/ui/sidebar';
 import { useI18n } from '@/hooks/useI18n';
 import { useThemeContext } from '@/components/ui/theme-provider';
 import { Moon, Sun, Languages, Github } from 'lucide-react';
@@ -11,7 +12,9 @@ export const Header = () => {
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center justify-between">
-        <Link to="/" className="flex items-center space-x-2">
+        <div className="flex items-center space-x-3">
+          <SidebarTrigger />
+          <Link to="/" className="flex items-center space-x-2">
           <div className="h-8 w-8 bg-gradient-primary rounded-lg flex items-center justify-center">
             <span className="text-white font-bold text-lg">IT</span>
           </div>
@@ -20,7 +23,8 @@ export const Header = () => {
               {t('common.title')}
             </h1>
           </div>
-        </Link>
+          </Link>
+        </div>
 
         <div className="flex items-center space-x-2">
           <Button
