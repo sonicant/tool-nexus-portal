@@ -59,7 +59,7 @@ export const ToolCard = ({ tool }: ToolCardProps) => {
           </div>
         </CardHeader>
         <CardContent className="pt-0">
-          <CardDescription className="text-sm text-muted-foreground line-clamp-3">
+          <CardDescription className="text-sm text-muted-foreground line-clamp-3 min-h-[4.5rem]">
             {tool.description[language]}
           </CardDescription>
         </CardContent>
