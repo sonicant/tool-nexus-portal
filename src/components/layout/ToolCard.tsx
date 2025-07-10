@@ -1,5 +1,6 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui/hover-card';
 import { ToolMeta } from '@/types/tool';
 import { useI18n } from '@/hooks/useI18n';
 import { useFavorites } from '@/hooks/useFavorites';
@@ -59,9 +60,16 @@ export const ToolCard = ({ tool }: ToolCardProps) => {
           </div>
         </CardHeader>
         <CardContent className="pt-0">
-          <CardDescription className="text-sm text-muted-foreground line-clamp-3 min-h-[4.5rem]">
-            {tool.description[language]}
-          </CardDescription>
+          <HoverCard>
+            <HoverCardTrigger asChild>
+              <CardDescription className="text-sm text-muted-foreground line-clamp-3 min-h-[4.5rem] cursor-help">
+                {tool.description[language]}
+              </CardDescription>
+            </HoverCardTrigger>
+            <HoverCardContent className="w-80">
+              <p className="text-sm">{tool.description[language]}</p>
+            </HoverCardContent>
+          </HoverCard>
         </CardContent>
       </Card>
     </Link>
