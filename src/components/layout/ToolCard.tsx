@@ -62,11 +62,17 @@ export const ToolCard = ({ tool }: ToolCardProps) => {
         <CardContent className="pt-0">
           <HoverCard>
             <HoverCardTrigger asChild>
-              <CardDescription className="text-sm text-muted-foreground line-clamp-3 min-h-[4.5rem] cursor-help">
+              <CardDescription className="text-sm text-muted-foreground cursor-help overflow-hidden" style={{
+                display: '-webkit-box',
+                WebkitLineClamp: 3,
+                WebkitBoxOrient: 'vertical',
+                lineHeight: '1.5rem',
+                maxHeight: '4.5rem'
+              }}>
                 {tool.description[language]}
               </CardDescription>
             </HoverCardTrigger>
-            <HoverCardContent className="w-80">
+            <HoverCardContent className="w-80 z-[9999] shadow-xl">
               <p className="text-sm">{tool.description[language]}</p>
             </HoverCardContent>
           </HoverCard>

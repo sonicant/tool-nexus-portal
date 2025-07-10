@@ -98,7 +98,7 @@
     --foreground: 240 5% 95%;              /* Light text color for readability in dark mode */
 
     /* Dark mode tool cards and content containers */
-    --card: 240 10% 8%;                    /* Dark background for tool cards and content sections */
+    --card: 240 10% 15%;                    /* Dark background for tool cards and content sections */
     --card-foreground: 240 5% 95%;         /* Light text color inside dark cards */
     
     /* Dark mode left navigation sidebar colors */

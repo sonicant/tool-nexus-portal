@@ -1,0 +1,39 @@
+classDiagram
+    class 用户 {
+        -String 用户名
+        -String 密码
+        -String 邮箱
+        +登录()
+        +注销()
+        +更新资料()
+    }
+    
+    class 管理员 {
+        -String 权限级别
+        +管理用户()
+        +查看日志()
+        +系统配置()
+    }
+    
+    class 订单 {
+        -String 订单号
+        -Date 创建时间
+        -Double 总金额
+        -String 状态
+        +创建订单()
+        +更新状态()
+        +计算总额()
+    }
+    
+    class 商品 {
+        -String 商品编号
+        -String 名称
+        -Double 价格
+        -Integer 库存
+        +更新库存()
+        +获取详情()
+    }
+    
+    用户 <|-- 管理员
+    用户 ||--o{ 订单 : 创建
+    订单 }o--|| 商品 : 包含

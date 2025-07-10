@@ -1,0 +1,18 @@
+sequenceDiagram
+    participant 用户 as U
+    participant 前端 as F
+    participant 后端 as B
+    participant 数据库 as DB
+    
+    U->>F: 提交表单
+    F->>F: 验证输入
+    F->>B: 发送API请求
+    B->>B: 处理业务逻辑
+    B->>DB: 查询数据
+    DB-->>B: 返回结果
+    B->>B: 格式化响应
+    B-->>F: 返回JSON数据
+    F->>F: 更新界面
+    F-->>U: 显示结果
+    
+    Note over U,DB: 完整的用户请求处理流程

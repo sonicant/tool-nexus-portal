@@ -12,6 +12,7 @@ import { QrGeneratorTool } from '@/tools/qr-generator/QrGeneratorTool';
 import { YamlTomlConverterTool } from '@/tools/yaml-toml-converter/YamlTomlConverterTool';
 import { DnsQueryTool } from '@/tools/dns-query/DnsQueryTool';
 import { XmlValidatorTool } from '@/tools/xml-validator/XmlValidatorTool';
+import { MermaidRendererTool } from '@/tools/mermaid-renderer/MermaidRendererTool';
 
 // Import tool metadata
 import { textHashMeta } from '@/tools/text-hash/meta';
@@ -25,6 +26,7 @@ import { qrGeneratorMeta } from '@/tools/qr-generator/meta';
 import { yamlTomlConverterMeta } from '@/tools/yaml-toml-converter/meta';
 import { dnsQueryMeta } from '@/tools/dns-query/meta';
 import { meta as xmlValidatorMeta } from '@/tools/xml-validator/meta';
+import { mermaidRendererMeta } from '@/tools/mermaid-renderer/meta';
 
 export const categories: ToolCategory[] = [
   {
@@ -74,6 +76,14 @@ export const categories: ToolCategory[] = [
       zh: '数据处理'
     },
     icon: 'database'
+  },
+  {
+    id: 'visualization',
+    name: {
+      en: 'Visualization',
+      zh: '可视化'
+    },
+    icon: 'chart-line'
   }
 ];
 
@@ -121,6 +131,10 @@ export const tools: ToolMeta[] = [
   {
     ...xmlValidatorMeta,
     component: XmlValidatorTool
+  },
+  {
+    ...mermaidRendererMeta,
+    component: MermaidRendererTool
   }
 ];
 

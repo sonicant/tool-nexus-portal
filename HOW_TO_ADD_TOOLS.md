@@ -312,6 +312,99 @@ interface ValidationResult {
 - 确保移动端体验良好
 - 验证触摸交互
 
+## 自动化测试（可选）
+
+**注意：添加自动化测试不是必需的要求，工具开发者可以根据工具的复杂性和重要性自行决定是否添加。**
+
+如果选择添加自动化测试，请按照以下规范：
+
+### 测试目录结构
+所有工具的测试文件应放置在 `tests/tools/` 目录下，每个工具单独一个目录：
+
+```
+tests/
+└── tools/
+    └── tool-name/              # 与工具目录名保持一致
+        ├── README.md            # 测试说明文档
+        ├── tool-name.test.ts    # 单元测试（使用Vitest）
+        ├── e2e-test.ts          # 端到端测试
+        ├── manual-test.js       # 手动测试脚本
+        └── samples/             # 测试样例文件
+            ├── sample1.ext
+            └── sample2.ext
+```
+
+### 测试文件类型
+
+#### 1. 单元测试 (`tool-name.test.ts`)
+- 使用 Vitest 框架
+- 测试核心功能函数
+- 测试数据验证逻辑
+- 测试错误处理
+
+```typescript
+import { describe, it, expect } from 'vitest';
+
+describe('Tool Name Tests', () => {
+  it('should validate input correctly', () => {
+    // 测试代码
+  });
+});
+```
+
+#### 2. 端到端测试 (`e2e-test.ts`)
+- 测试完整的功能流程
+- 模拟用户操作场景
+- 验证输入输出结果
+
+#### 3. 手动测试脚本 (`manual-test.js`)
+- 提供手动测试指南
+- 列出测试检查清单
+- 包含浏览器测试步骤
+
+#### 4. 测试样例 (`samples/`)
+- 提供各种测试用例的示例数据
+- 包含有效和无效的输入样例
+- 支持自动化测试和手动测试
+
+### 测试最佳实践
+
+1. **测试覆盖**：
+   - 核心功能测试
+   - 边界条件测试
+   - 错误处理测试
+   - 国际化功能测试
+
+2. **测试数据**：
+   - 使用真实的测试样例
+   - 包含各种数据格式
+   - 覆盖正常和异常情况
+
+3. **测试文档**：
+   - 每个测试目录包含 README.md
+   - 说明测试目的和运行方法
+   - 记录测试覆盖范围
+
+### 运行测试
+
+```bash
+# 运行单元测试
+npm test tests/tools/tool-name/tool-name.test.ts
+
+# 运行端到端测试
+node tests/tools/tool-name/e2e-test.ts
+
+# 查看手动测试指南
+node tests/tools/tool-name/manual-test.js
+```
+
+### 测试示例参考
+
+可以参考以下现有工具的测试实现：
+- `tests/tools/xml-validator/` - 复杂验证工具的测试
+- `tests/tools/yaml-toml-converter/` - 转换工具的测试
+- `tests/tools/mermaid-renderer/` - 渲染工具的测试
+
 ## 常见问题和解决方案
 
 ### 1. 404错误
