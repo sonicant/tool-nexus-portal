@@ -1,0 +1,35 @@
+{
+  "name": "POST Request with XML Body",
+  "description": "Send XML data to a web service",
+  "request": {
+    "method": "POST",
+    "url": "https://httpbin.org/post",
+    "headers": [
+      {
+        "id": "header-1",
+        "key": "Content-Type",
+        "value": "application/xml",
+        "enabled": true
+      },
+      {
+        "id": "header-2",
+        "key": "Accept",
+        "value": "application/xml",
+        "enabled": true
+      },
+      {
+        "id": "header-3",
+        "key": "SOAPAction",
+        "value": "urn:createUser",
+        "enabled": true
+      }
+    ],
+    "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Header>\n    <auth:Authentication xmlns:auth=\"http://example.com/auth\">\n      <auth:Token>demo-token-123</auth:Token>\n    </auth:Authentication>\n  </soap:Header>\n  <soap:Body>\n    <user:CreateUser xmlns:user=\"http://example.com/user\">\n      <user:UserData>\n        <user:Name>张三</user:Name>\n        <user:Email>zhangsan@example.com</user:Email>\n        <user:Phone>+86-138-0013-8000</user:Phone>\n        <user:Address>\n          <user:Country>中国</user:Country>\n          <user:City>北京</user:City>\n          <user:Street>长安街1号</user:Street>\n        </user:Address>\n        <user:Preferences>\n          <user:Language>zh-CN</user:Language>\n          <user:Timezone>Asia/Shanghai</user:Timezone>\n        </user:Preferences>\n      </user:UserData>\n    </user:CreateUser>\n  </soap:Body>\n</soap:Envelope>",
+    "contentType": "application/xml"
+  },
+  "expectedResponse": {
+    "status": 200,
+    "contentType": "application/json",
+    "bodyContains": ["data", "xml"]
+  }
+}

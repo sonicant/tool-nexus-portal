@@ -1,0 +1,36 @@
+{
+  "name": "Custom Content Type Request",
+  "description": "Request with custom content type for API versioning",
+  "request": {
+    "method": "POST",
+    "url": "https://httpbin.org/post",
+    "headers": [
+      {
+        "id": "header-1",
+        "key": "Accept",
+        "value": "application/vnd.api+json",
+        "enabled": true
+      },
+      {
+        "id": "header-2",
+        "key": "X-API-Version",
+        "value": "2024-01-01",
+        "enabled": true
+      },
+      {
+        "id": "header-3",
+        "key": "X-Client-ID",
+        "value": "http-request-builder",
+        "enabled": true
+      }
+    ],
+    "body": "{\n  \"data\": {\n    \"type\": \"articles\",\n    \"attributes\": {\n      \"title\": \"JSON:API 规范测试\",\n      \"content\": \"这是一个遵循 JSON:API 规范的请求示例\",\n      \"published\": true,\n      \"publishedAt\": \"2024-01-01T00:00:00Z\",\n      \"tags\": [\"json-api\", \"测试\", \"HTTP\"]\n    },\n    \"relationships\": {\n      \"author\": {\n        \"data\": {\n          \"type\": \"people\",\n          \"id\": \"1\"\n        }\n      },\n      \"category\": {\n        \"data\": {\n          \"type\": \"categories\",\n          \"id\": \"tech\"\n        }\n      }\n    }\n  },\n  \"included\": [\n    {\n      \"type\": \"people\",\n      \"id\": \"1\",\n      \"attributes\": {\n        \"name\": \"张三\",\n        \"email\": \"zhangsan@example.com\"\n      }\n    }\n  ]\n}",
+    "contentType": "custom",
+    "customContentType": "application/vnd.api+json"
+  },
+  "expectedResponse": {
+    "status": 200,
+    "contentType": "application/json",
+    "bodyContains": ["data", "json"]
+  }
+}

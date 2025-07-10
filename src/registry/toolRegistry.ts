@@ -13,6 +13,7 @@ import { YamlTomlConverterTool } from '@/tools/yaml-toml-converter/YamlTomlConve
 import { DnsQueryTool } from '@/tools/dns-query/DnsQueryTool';
 import { XmlValidatorTool } from '@/tools/xml-validator/XmlValidatorTool';
 import { MermaidRendererTool } from '@/tools/mermaid-renderer/MermaidRendererTool';
+import HttpRequestBuilderTool from '@/tools/http-request-builder/HttpRequestBuilderTool';
 
 // Import tool metadata
 import { textHashMeta } from '@/tools/text-hash/meta';
@@ -27,6 +28,7 @@ import { yamlTomlConverterMeta } from '@/tools/yaml-toml-converter/meta';
 import { dnsQueryMeta } from '@/tools/dns-query/meta';
 import { meta as xmlValidatorMeta } from '@/tools/xml-validator/meta';
 import { mermaidRendererMeta } from '@/tools/mermaid-renderer/meta';
+import { httpRequestBuilderMeta } from '@/tools/http-request-builder/meta';
 
 export const categories: ToolCategory[] = [
   {
@@ -135,6 +137,10 @@ export const tools: ToolMeta[] = [
   {
     ...mermaidRendererMeta,
     component: MermaidRendererTool
+  },
+  {
+    ...httpRequestBuilderMeta,
+    component: HttpRequestBuilderTool
   }
 ];
 

@@ -1,0 +1,35 @@
+{
+  "name": "POST Request with JSON Body",
+  "description": "Create a new post with JSON payload",
+  "request": {
+    "method": "POST",
+    "url": "https://jsonplaceholder.typicode.com/posts",
+    "headers": [
+      {
+        "id": "header-1",
+        "key": "Content-Type",
+        "value": "application/json",
+        "enabled": true
+      },
+      {
+        "id": "header-2",
+        "key": "Accept",
+        "value": "application/json",
+        "enabled": true
+      },
+      {
+        "id": "header-3",
+        "key": "Authorization",
+        "value": "Bearer demo-token-123",
+        "enabled": false
+      }
+    ],
+    "body": "{\n  \"title\": \"测试文章标题\",\n  \"body\": \"这是一篇通过HTTP请求构建器创建的测试文章。\\n\\n文章内容包含中文字符和特殊符号：@#$%^&*()\\n\\n创建时间：2024-01-01T00:00:00Z\",\n  \"userId\": 1,\n  \"tags\": [\"测试\", \"HTTP\", \"API\"],\n  \"metadata\": {\n    \"source\": \"http-request-builder\",\n    \"version\": \"1.0.0\"\n  }\n}",
+    "contentType": "application/json"
+  },
+  "expectedResponse": {
+    "status": 201,
+    "contentType": "application/json",
+    "bodyContains": ["id", "title", "body", "userId"]
+  }
+}

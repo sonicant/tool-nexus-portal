@@ -1,0 +1,29 @@
+{
+  "name": "Basic GET Request",
+  "description": "Simple GET request to fetch user data",
+  "request": {
+    "method": "GET",
+    "url": "https://jsonplaceholder.typicode.com/users/1",
+    "headers": [
+      {
+        "id": "header-1",
+        "key": "Accept",
+        "value": "application/json",
+        "enabled": true
+      },
+      {
+        "id": "header-2",
+        "key": "User-Agent",
+        "value": "HTTP-Request-Builder/1.0",
+        "enabled": true
+      }
+    ],
+    "body": "",
+    "contentType": "application/json"
+  },
+  "expectedResponse": {
+    "status": 200,
+    "contentType": "application/json",
+    "bodyContains": ["id", "name", "email", "address"]
+  }
+}
