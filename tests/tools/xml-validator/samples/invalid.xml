@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<person>
+  <name>张三</name>
+  <age>25</age>
+  <email>zhangsan@example.com
+  <!-- 缺少闭合标签 -->
+  <active>true</active>
+  <unclosed>这个标签没有闭合
+</person>

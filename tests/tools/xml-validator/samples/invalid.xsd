@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 这不是一个有效的XSD文件 -->
+<root>
+  <element>这不是XSD schema格式</element>
+  <invalid>缺少正确的命名空间</invalid>
+  <unclosed>这个标签没有闭合
+</root>

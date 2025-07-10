@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<company>
+  <info>
+    <name>科技有限公司</name>
+    <founded>2020</founded>
+    <employees>150</employees>
+  </info>
+  <departments>
+    <department id="1">
+      <name>研发部</name>
+      <budget>1000000.50</budget>
+      <employees>
+        <employee id="101">
+          <name>李四</name>
+          <position>高级工程师</position>
+          <salary>15000.00</salary>
+          <skills>
+            <skill>Java</skill>
+            <skill>Python</skill>
+            <skill>React</skill>
+          </skills>
+        </employee>
+        <employee id="102">
+          <name>王五</name>
+          <position>产品经理</position>
+          <salary>18000.00</salary>
+          <skills>
+            <skill>产品设计</skill>
+            <skill>项目管理</skill>
+          </skills>
+        </employee>
+      </employees>
+    </department>
+    <department id="2">
+      <name>市场部</name>
+      <budget>500000.00</budget>
+      <employees>
+        <employee id="201">
+          <name>赵六</name>
+          <position>市场专员</position>
+          <salary>12000.00</salary>
+          <skills>
+            <skill>市场营销</skill>
+            <skill>数据分析</skill>
+          </skills>
+        </employee>
+      </employees>
+    </department>
+  </departments>
+  <projects>
+    <project status="active">
+      <name>AI助手项目</name>
+      <startDate>2024-01-01</startDate>
+      <endDate>2024-12-31</endDate>
+      <budget>2000000.00</budget>
+      <team>
+        <member employeeId="101"/>
+        <member employeeId="102"/>
+      </team>
+    </project>
+  </projects>
+</company>

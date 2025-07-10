@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document>
+  <title>特殊字符测试文档</title>
+  <content>
+    <text>包含中文字符：你好世界！</text>
+    <emoji>表情符号：😀🎉🚀</emoji>
+    <symbols>特殊符号：&lt;&gt;&amp;&quot;&apos;</symbols>
+    <unicode>Unicode字符：αβγδε ñáéíóú</unicode>
+    <cdata><![CDATA[
+      这是CDATA部分，可以包含特殊字符：<>&"'
+      甚至可以包含HTML: <script>alert('test')</script>
+    ]]></cdata>
+    <numbers>
+      <decimal>123.456</decimal>
+      <negative>-789</negative>
+      <scientific>1.23e-4</scientific>
+    </numbers>
+    <dates>
+      <iso>2024-01-15T10:30:00Z</iso>
+      <custom>2024年1月15日</custom>
+    </dates>
+  </content>
+  <metadata>
+    <author>测试作者</author>
+    <created>2024-01-15</created>
+    <tags>
+      <tag>测试</tag>
+      <tag>XML</tag>
+      <tag>特殊字符</tag>
+    </tags>
+  </metadata>
+</document>

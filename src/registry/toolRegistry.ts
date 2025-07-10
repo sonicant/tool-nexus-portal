@@ -11,6 +11,7 @@ import { SubnetCalculatorTool } from '@/tools/subnet-calculator/SubnetCalculator
 import { QrGeneratorTool } from '@/tools/qr-generator/QrGeneratorTool';
 import { YamlTomlConverterTool } from '@/tools/yaml-toml-converter/YamlTomlConverterTool';
 import { DnsQueryTool } from '@/tools/dns-query/DnsQueryTool';
+import { XmlValidatorTool } from '@/tools/xml-validator/XmlValidatorTool';
 
 // Import tool metadata
 import { textHashMeta } from '@/tools/text-hash/meta';
@@ -23,6 +24,7 @@ import { subnetCalculatorMeta } from '@/tools/subnet-calculator/meta';
 import { qrGeneratorMeta } from '@/tools/qr-generator/meta';
 import { yamlTomlConverterMeta } from '@/tools/yaml-toml-converter/meta';
 import { dnsQueryMeta } from '@/tools/dns-query/meta';
+import { meta as xmlValidatorMeta } from '@/tools/xml-validator/meta';
 
 export const categories: ToolCategory[] = [
   {
@@ -64,6 +66,14 @@ export const categories: ToolCategory[] = [
       zh: '网络工具'
     },
     icon: 'network'
+  },
+  {
+    id: 'data-processing',
+    name: {
+      en: 'Data Processing',
+      zh: '数据处理'
+    },
+    icon: 'database'
   }
 ];
 
@@ -107,6 +117,10 @@ export const tools: ToolMeta[] = [
   {
     ...dnsQueryMeta,
     component: DnsQueryTool
+  },
+  {
+    ...xmlValidatorMeta,
+    component: XmlValidatorTool
   }
 ];
 

@@ -31,7 +31,8 @@ export const translations: Translations = {
       generator: 'Generators',
       converter: 'Converters',
       diff: 'Comparison Tools',
-      network: 'Network Tools'
+      network: 'Network Tools',
+      'data-processing': 'Data Processing'
     },
     tools: {
       textHash: {
@@ -137,6 +138,30 @@ export const translations: Translations = {
           '4': 'Not Implemented',
           '5': 'Refused'
         }
+      },
+      xmlValidator: {
+        name: 'XML Validator',
+        description: 'Validate XML documents against XSD schemas with detailed error reporting',
+        title: 'XML Validator',
+        xsdSchema: 'XSD Schema',
+        xmlDocument: 'XML Document',
+        textInput: 'Text Input',
+        fileUpload: 'File Upload',
+        xsdPlaceholder: 'Paste your XSD schema here...',
+        xmlPlaceholder: 'Paste your XML document here...',
+        uploadXsd: 'Click to upload XSD file',
+        uploadXml: 'Click to upload XML file',
+        validate: 'Validate XML',
+        validating: 'Validating...',
+        clearAll: 'Clear All',
+        validationResults: 'Validation Results',
+        valid: 'Valid',
+        invalid: 'Invalid',
+        issuesFound: 'issue(s) found',
+        error: 'Error',
+        warning: 'Warning',
+        line: 'Line',
+        column: 'Column'
       }
     }
   },
@@ -170,7 +195,8 @@ export const translations: Translations = {
       generator: '生成器',
       converter: '转换器',
       diff: '对比工具',
-      network: '网络工具'
+      network: '网络工具',
+      'data-processing': '数据处理'
     },
     tools: {
       textHash: {
@@ -276,6 +302,30 @@ export const translations: Translations = {
           '4': '未实现',
           '5': '拒绝'
         }
+      },
+      xmlValidator: {
+        name: 'XML验证器',
+        description: '使用XSD模式验证XML文档，提供详细的错误报告',
+        title: 'XML验证器',
+        xsdSchema: 'XSD模式',
+        xmlDocument: 'XML文档',
+        textInput: '文本输入',
+        fileUpload: '文件上传',
+        xsdPlaceholder: '在此粘贴您的XSD模式...',
+        xmlPlaceholder: '在此粘贴您的XML文档...',
+        uploadXsd: '点击上传XSD文件',
+        uploadXml: '点击上传XML文件',
+        validate: '验证XML',
+        validating: '验证中...',
+        clearAll: '清空全部',
+        validationResults: '验证结果',
+        valid: '有效',
+        invalid: '无效',
+        issuesFound: '个问题',
+        error: '错误',
+        warning: '警告',
+        line: '行',
+        column: '列'
       }
     }
   }

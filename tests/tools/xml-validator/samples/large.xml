@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database>
+  <metadata>
+    <name>大型数据库测试</name>
+    <version>1.0</version>
+    <created>2024-01-15</created>
+    <recordCount>1000</recordCount>
+  </metadata>
+  <records>
+    <!-- 生成1000条记录用于性能测试 -->
+    <record id="1">
+      <name>用户001</name>
+      <email>user001@example.com</email>
+      <age>25</age>
+      <department>研发部</department>
+      <salary>15000.00</salary>
+      <joinDate>2023-01-15</joinDate>
+      <skills>
+        <skill>Java</skill>
+        <skill>Python</skill>
+        <skill>React</skill>
+      </skills>
+      <address>
+        <street>中山路123号</street>
+        <city>北京</city>
+        <zipCode>100000</zipCode>
+      </address>
+    </record>
+    <record id="2">
+      <name>用户002</name>
+      <email>user002@example.com</email>
+      <age>28</age>
+      <department>产品部</department>
+      <salary>18000.00</salary>
+      <joinDate>2022-06-20</joinDate>
+      <skills>
+        <skill>产品设计</skill>
+        <skill>用户研究</skill>
+        <skill>项目管理</skill>
+      </skills>
+      <address>
+        <street>建国路456号</street>
+        <city>上海</city>
+        <zipCode>200000</zipCode>
+      </address>
+    </record>
+    <record id="3">
+      <name>用户003</name>
+      <email>user003@example.com</email>
+      <age>30</age>
+      <department>市场部</department>
+      <salary>16000.00</salary>
+      <joinDate>2021-03-10</joinDate>
+      <skills>
+        <skill>市场营销</skill>
+        <skill>数据分析</skill>
+        <skill>客户关系</skill>
+      </skills>
+      <address>
+        <street>解放路789号</street>
+        <city>广州</city>
+        <zipCode>510000</zipCode>
+      </address>
+    </record>
+    <!-- 为了简化，这里只展示3条记录，实际测试中可以通过脚本生成更多记录 -->
+    <!-- 重复类似的记录结构到1000条 -->
+  </records>
+  <statistics>
+    <totalRecords>1000</totalRecords>
+    <averageAge>27.5</averageAge>
+    <averageSalary>16500.00</averageSalary>
+    <departmentCounts>
+      <department name="研发部">400</department>
+      <department name="产品部">250</department>
+      <department name="市场部">200</department>
+      <department name="运营部">150</department>
+    </departmentCounts>
+  </statistics>
+</database>
