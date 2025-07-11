@@ -5,7 +5,7 @@ import { ToolMeta } from '@/types/tool';
 import { useI18n } from '@/hooks/useI18n';
 import { useFavorites } from '@/hooks/useFavorites';
 import { Link } from 'react-router-dom';
-import { Hash, Cog, ArrowRightLeft, GitCompare, Network, QrCode, Heart, Link as LinkIcon } from 'lucide-react';
+import { Hash, Cog, ArrowRightLeft, GitCompare, Network, QrCode, Heart, Link as LinkIcon, Globe, ChartLine, FileCheck, Database, Send } from 'lucide-react';
 
 const iconMap = {
   hash: Hash,
@@ -15,6 +15,11 @@ const iconMap = {
   network: Network,
   'qr-code': QrCode,
   link: LinkIcon,
+  globe: Globe,
+  'chart-line': ChartLine,
+  FileCheck: FileCheck,
+  database: Database,
+  send: Send,
 };
 
 interface ToolCardProps {

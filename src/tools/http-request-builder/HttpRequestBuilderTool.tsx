@@ -25,6 +25,7 @@ import {
   CheckCircle,
   Loader2
 } from 'lucide-react';
+import { HomeButton } from '@/components/ui/home-button';
 import { 
   HttpMethod, 
   ContentType, 
@@ -331,16 +332,22 @@ export default function HttpRequestBuilderTool() {
   };
   
   return (
-    <div className="w-full max-w-6xl mx-auto p-4 space-y-4">
+    <div className="container mx-auto py-8 space-y-6">
+      <div className="flex items-center justify-between mb-8">
+        <div className="flex items-center space-x-3">
+          <div className="p-3 bg-gradient-primary rounded-xl shadow-primary">
+            <Send className="h-6 w-6 text-white" />
+          </div>
+          <div>
+            <h1 className="text-3xl font-bold">{t('tools.httpRequestBuilder.name')}</h1>
+            <p className="text-muted-foreground">{t('tools.httpRequestBuilder.description')}</p>
+          </div>
+        </div>
+        <HomeButton />
+      </div>
+
       <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Send className="h-5 w-5" />
-            {t('tools.httpRequestBuilder.name')}
-          </CardTitle>
-          <CardDescription>{t('tools.httpRequestBuilder.description')}</CardDescription>
-        </CardHeader>
-        <CardContent>
+        <CardContent className="pt-6">
           <Tabs value={activeTab} onValueChange={setActiveTab}>
             <TabsList className="grid w-full grid-cols-4">
               <TabsTrigger value="request">{t('tools.httpRequestBuilder.request')}</TabsTrigger>
