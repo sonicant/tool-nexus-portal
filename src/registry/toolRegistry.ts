@@ -14,6 +14,7 @@ import { DnsQueryTool } from '@/tools/dns-query/DnsQueryTool';
 import { XmlValidatorTool } from '@/tools/xml-validator/XmlValidatorTool';
 import { MermaidRendererTool } from '@/tools/mermaid-renderer/MermaidRendererTool';
 import HttpRequestBuilderTool from '@/tools/http-request-builder/HttpRequestBuilderTool';
+import { TimestampConverterTool } from '@/tools/timestamp-converter/TimestampConverterTool';
 
 // Import tool metadata
 import { textHashMeta } from '@/tools/text-hash/meta';
@@ -29,6 +30,7 @@ import { dnsQueryMeta } from '@/tools/dns-query/meta';
 import { meta as xmlValidatorMeta } from '@/tools/xml-validator/meta';
 import { mermaidRendererMeta } from '@/tools/mermaid-renderer/meta';
 import { httpRequestBuilderMeta } from '@/tools/http-request-builder/meta';
+import { timestampConverterMeta } from '@/tools/timestamp-converter/meta';
 
 export const categories: ToolCategory[] = [
   {
@@ -141,6 +143,10 @@ export const tools: ToolMeta[] = [
   {
     ...httpRequestBuilderMeta,
     component: HttpRequestBuilderTool
+  },
+  {
+    ...timestampConverterMeta,
+    component: TimestampConverterTool
   }
 ];
 

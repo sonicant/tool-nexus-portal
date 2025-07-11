@@ -232,6 +232,33 @@ export const translations: Translations = {
         presetSaved: 'Preset saved successfully',
         presetLoaded: 'Preset loaded successfully',
         presetDeleted: 'Preset deleted successfully'
+      },
+      timestampConverter: {
+        name: 'Timestamp Converter',
+        description: 'Convert between Unix timestamps and human-readable dates with timezone support',
+        currentTime: 'Current Time',
+        currentTimeDesc: 'Real-time current timestamp and date',
+        timestampToDate: 'Timestamp to Date',
+        timestampToDateDesc: 'Convert Unix timestamp to human-readable date',
+        dateToTimestamp: 'Date to Timestamp',
+        dateToTimestampDesc: 'Convert date string to Unix timestamp',
+        timestampInput: 'Unix Timestamp',
+        timestampPlaceholder: 'Enter Unix timestamp (seconds or milliseconds)...',
+        dateInput: 'Date String',
+        datePlaceholder: 'Enter date (YYYY-MM-DD HH:mm:ss or ISO format)...',
+        timezone: 'Timezone',
+        format: 'Format',
+        unixTimestamp: 'Unix Timestamp',
+        humanReadable: 'Human Readable',
+        useCurrentTimestamp: 'Use Current Timestamp',
+        useCurrentDateTime: 'Use Current Date/Time',
+        errors: {
+          emptyTimestamp: 'Please enter a timestamp',
+          invalidTimestamp: 'Invalid timestamp format',
+          emptyDate: 'Please enter a date',
+          invalidDate: 'Invalid date format',
+          conversionFailed: 'Conversion failed'
+        }
       }
     }
   },
@@ -466,6 +493,33 @@ export const translations: Translations = {
         presetSaved: '预设保存成功',
         presetLoaded: '预设加载成功',
         presetDeleted: '预设删除成功'
+      },
+      timestampConverter: {
+        name: '时间戳转换器',
+        description: '在Unix时间戳和人类可读日期之间转换，支持时区设置',
+        currentTime: '当前时间',
+        currentTimeDesc: '实时显示当前时间戳和日期',
+        timestampToDate: '时间戳转日期',
+        timestampToDateDesc: '将Unix时间戳转换为人类可读日期',
+        dateToTimestamp: '日期转时间戳',
+        dateToTimestampDesc: '将日期字符串转换为Unix时间戳',
+        timestampInput: 'Unix时间戳',
+        timestampPlaceholder: '输入Unix时间戳（秒或毫秒）...',
+        dateInput: '日期字符串',
+        datePlaceholder: '输入日期（YYYY-MM-DD HH:mm:ss 或 ISO格式）...',
+        timezone: '时区',
+        format: '格式',
+        unixTimestamp: 'Unix时间戳',
+        humanReadable: '人类可读格式',
+        useCurrentTimestamp: '使用当前时间戳',
+        useCurrentDateTime: '使用当前日期时间',
+        errors: {
+          emptyTimestamp: '请输入时间戳',
+          invalidTimestamp: '无效的时间戳格式',
+          emptyDate: '请输入日期',
+          invalidDate: '无效的日期格式',
+          conversionFailed: '转换失败'
+        }
       }
     }
   }
