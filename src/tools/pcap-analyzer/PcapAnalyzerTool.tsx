@@ -5,6 +5,7 @@ import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { Network, AlertTriangle } from 'lucide-react';
 import { useI18n } from '@/hooks/useI18n';
+import { HomeButton } from '@/components/ui/home-button';
 import { FileUpload } from './components/FileUpload';
 import { FilterControls } from './components/FilterControls';
 import { PacketList } from './components/PacketList';
@@ -189,12 +190,18 @@ const PcapAnalyzerTool: React.FC = () => {
   };
 
   return (
-    <div className="container mx-auto p-6 space-y-6">
-      <div className="text-center space-y-2">
-        <h1 className="text-3xl font-bold">{t('tools.pcapAnalyzer.title')}</h1>
-        <p className="text-muted-foreground">
-          {t('tools.pcapAnalyzer.subtitle')}
-        </p>
+    <div className="container mx-auto py-8 space-y-6">
+      <div className="flex items-center justify-between mb-8">
+        <div className="flex items-center space-x-3">
+          <div className="p-3 bg-gradient-primary rounded-xl shadow-primary">
+            <Network className="h-6 w-6 text-white" />
+          </div>
+          <div>
+            <h1 className="text-3xl font-bold">{t('tools.pcapAnalyzer.title')}</h1>
+            <p className="text-muted-foreground">{t('tools.pcapAnalyzer.subtitle')}</p>
+          </div>
+        </div>
+        <HomeButton />
       </div>
 
       {/* File Upload and Analysis Summary Row */}

@@ -260,6 +260,36 @@ export const translations: Translations = {
           conversionFailed: 'Conversion failed'
         }
       },
+      regexTester: {
+        name: 'Regex Tester',
+        description: 'Test and validate regular expressions with real-time matching, group capture, and detailed explanations',
+        pattern: 'Regular Expression Pattern',
+        patternDesc: 'Enter your regular expression pattern to test',
+        patternPlaceholder: 'Enter regex pattern (e.g., \\d{3}-\\d{3}-\\d{4})',
+        testString: 'Test String',
+        testStringDesc: 'Enter the text you want to test against your regex pattern',
+        testStringPlaceholder: 'Enter text to test against the regex pattern...',
+        results: 'Test Results',
+        resultsDesc: 'View matches, capture groups, and highlighted text',
+        matches: 'matches',
+        match: 'Match',
+        position: 'Position',
+        captureGroups: 'Capture Groups',
+        namedGroups: 'Named Groups',
+        highlightedText: 'Highlighted Text',
+        matchDetails: 'Match Details',
+        noMatches: 'No matches found for the current pattern and test string',
+        flags: {
+          title: 'Regex Flags',
+          description: 'Configure regex behavior with flags',
+          globalDesc: 'Find all matches (not just the first)',
+          ignoreCaseDesc: 'Case-insensitive matching',
+          multilineDesc: '^$ match line breaks',
+          dotAllDesc: '. matches newlines',
+          unicodeDesc: 'Full unicode support',
+          stickyDesc: 'Match from lastIndex only'
+        }
+      },
       pcapAnalyzer: {
         name: 'Network Packet Analyzer',
         description: 'Upload and analyze PCAP files to visualize network packet structures, protocols, and payload data with BPF filtering support',
@@ -621,6 +651,36 @@ export const translations: Translations = {
           emptyDate: '请输入日期',
           invalidDate: '无效的日期格式',
           conversionFailed: '转换失败'
+        }
+      },
+      regexTester: {
+        name: '正则表达式测试器',
+        description: '测试和验证正则表达式，支持实时匹配、分组捕获和详细说明',
+        pattern: '正则表达式模式',
+        patternDesc: '输入您要测试的正则表达式模式',
+        patternPlaceholder: '输入正则表达式模式（例如：\\d{3}-\\d{3}-\\d{4}）',
+        testString: '测试字符串',
+        testStringDesc: '输入要与正则表达式模式匹配的文本',
+        testStringPlaceholder: '输入要与正则表达式模式匹配的文本...',
+        results: '测试结果',
+        resultsDesc: '查看匹配项、捕获组和高亮文本',
+        matches: '个匹配',
+        match: '匹配',
+        position: '位置',
+        captureGroups: '捕获组',
+        namedGroups: '命名组',
+        highlightedText: '高亮文本',
+        matchDetails: '匹配详情',
+        noMatches: '当前模式和测试字符串未找到匹配项',
+        flags: {
+          title: '正则表达式标志',
+          description: '使用标志配置正则表达式行为',
+          globalDesc: '查找所有匹配项（不仅仅是第一个）',
+          ignoreCaseDesc: '不区分大小写匹配',
+          multilineDesc: '^$ 匹配换行符',
+          dotAllDesc: '. 匹配换行符',
+          unicodeDesc: '完整Unicode支持',
+          stickyDesc: '仅从lastIndex开始匹配'
         }
       },
       pcapAnalyzer: {

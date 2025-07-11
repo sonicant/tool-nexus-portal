@@ -1,0 +1,22 @@
+{
+  "extends": "./tsconfig.app.json",
+  "compilerOptions": {
+    "types": ["vitest/globals", "@testing-library/jest-dom"],
+    "jsx": "react-jsx",
+    "allowImportingTsExtensions": true,
+    "noEmit": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+    "moduleResolution": "bundler",
+    "skipLibCheck": true
+  },
+  "include": [
+    "tests/**/*",
+    "src/test/**/*",
+    "src/**/*.test.*",
+    "src/**/*.spec.*",
+    "src/**/*"
+  ]
+}

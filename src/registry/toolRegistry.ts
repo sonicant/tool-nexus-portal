@@ -15,6 +15,7 @@ import { XmlValidatorTool } from '@/tools/xml-validator/XmlValidatorTool';
 import { MermaidRendererTool } from '@/tools/mermaid-renderer/MermaidRendererTool';
 import HttpRequestBuilderTool from '@/tools/http-request-builder/HttpRequestBuilderTool';
 import { TimestampConverterTool } from '@/tools/timestamp-converter/TimestampConverterTool';
+import { RegexTesterTool } from '@/tools/regex-tester/RegexTesterTool';
 import PcapAnalyzerTool from '@/tools/pcap-analyzer/PcapAnalyzerTool';
 
 // Import tool metadata
@@ -32,6 +33,7 @@ import { meta as xmlValidatorMeta } from '@/tools/xml-validator/meta';
 import { mermaidRendererMeta } from '@/tools/mermaid-renderer/meta';
 import { httpRequestBuilderMeta } from '@/tools/http-request-builder/meta';
 import { timestampConverterMeta } from '@/tools/timestamp-converter/meta';
+import { regexTesterMeta } from '@/tools/regex-tester/meta';
 import { meta as pcapAnalyzerMeta } from '@/tools/pcap-analyzer/meta';
 
 export const categories: ToolCategory[] = [
@@ -149,6 +151,10 @@ export const tools: ToolMeta[] = [
   {
     ...timestampConverterMeta,
     component: TimestampConverterTool
+  },
+  {
+    ...regexTesterMeta,
+    component: RegexTesterTool
   },
   {
     ...pcapAnalyzerMeta,
