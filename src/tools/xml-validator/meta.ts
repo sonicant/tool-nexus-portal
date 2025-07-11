@@ -15,6 +15,6 @@ export const meta = {
     en: ['xml', 'xsd', 'validation', 'schema', 'document'],
     zh: ['xml', 'xsd', '验证', '模式', '文档']
   },
-  icon: 'FileCheck',
+  icon: 'file-check',
   path: '/tools/xml-validator'
 };

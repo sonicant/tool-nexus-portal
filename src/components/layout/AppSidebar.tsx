@@ -17,7 +17,7 @@ import {
 } from '@/components/ui/sidebar';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { ChevronDown } from 'lucide-react';
-import { Hash, Cog, ArrowRightLeft, GitCompare, Network, QrCode, Link as LinkIcon } from 'lucide-react';
+import { Hash, Cog, ArrowRightLeft, GitCompare, Network, QrCode, Heart, Link as LinkIcon, Globe, ChartLine, FileCheck, Database, Send, Clock } from 'lucide-react';
 
 const iconMap = {
   hash: Hash,
@@ -27,6 +27,12 @@ const iconMap = {
   network: Network,
   'qr-code': QrCode,
   link: LinkIcon,
+  globe: Globe,
+  'chart-line': ChartLine,
+  'file-check': FileCheck,
+  database: Database,
+  send: Send,
+  clock: Clock,
 };
 
 export const AppSidebar = () => {

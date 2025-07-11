@@ -1,7 +1,7 @@
 import { ToolCategory, ToolMeta } from '@/types/tool';
 import { useI18n } from '@/hooks/useI18n';
 import { ToolCard } from './ToolCard';
-import { Hash, Cog, ArrowRightLeft, GitCompare, Network } from 'lucide-react';
+import { Hash, Cog, ArrowRightLeft, GitCompare, Network, QrCode, Heart, Link as LinkIcon, Globe, ChartLine, FileCheck, Database, Send, Clock } from 'lucide-react';
 
 const iconMap = {
   hash: Hash,
@@ -9,6 +9,14 @@ const iconMap = {
   'arrow-right-left': ArrowRightLeft,
   'git-compare': GitCompare,
   network: Network,
+  'qr-code': QrCode,
+  link: LinkIcon,
+  globe: Globe,
+  'chart-line': ChartLine,
+  'file-check': FileCheck,
+  database: Database,
+  send: Send,
+  clock: Clock,
 };
 
 interface CategorySectionProps {

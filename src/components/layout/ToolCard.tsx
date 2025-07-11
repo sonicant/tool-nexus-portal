@@ -17,7 +17,7 @@ const iconMap = {
   link: LinkIcon,
   globe: Globe,
   'chart-line': ChartLine,
-  FileCheck: FileCheck,
+  'file-check': FileCheck,
   database: Database,
   send: Send,
   clock: Clock,
