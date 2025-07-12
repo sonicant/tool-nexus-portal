@@ -9,6 +9,7 @@ import { FavoritesProvider } from "@/hooks/useFavorites";
 import { SidebarProvider, SidebarTrigger, SidebarInset } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/layout/AppSidebar";
 import { Header } from "@/components/layout/Header";
+import Breadcrumb from "@/components/seo/Breadcrumb";
 import Index from "./pages/Index";
 import ToolPage from "./pages/ToolPage";
 import NotFound from "./pages/NotFound";
@@ -23,6 +24,9 @@ const AppContent = () => (
         <SidebarInset className="flex-1">
           <Header />
           <div className="flex-1">
+            <div className="container mx-auto px-4 py-4">
+              <Breadcrumb />
+            </div>
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/tools/:toolId" element={<ToolPage />} />

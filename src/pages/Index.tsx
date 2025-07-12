@@ -1,12 +1,15 @@
 import { useI18n } from '@/hooks/useI18n';
 import { tools } from '@/registry/toolRegistry';
 import { ToolCard } from '@/components/layout/ToolCard';
+import SEOHead from '@/components/seo/SEOHead';
 
 const Index = () => {
   const { t } = useI18n();
 
   return (
-    <div className="container mx-auto py-12 space-y-12">
+    <>
+      <SEOHead />
+      <div className="container mx-auto py-12 space-y-12">
       {/* Hero Section */}
       <div className="text-center space-y-6">
         <h1 className="text-5xl font-bold bg-gradient-hero bg-clip-text text-transparent">
@@ -23,7 +26,8 @@ const Index = () => {
           <ToolCard key={tool.id} tool={tool} />
         ))}
       </div>
-    </div>
+      </div>
+    </>
   );
 };
 

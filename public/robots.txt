@@ -1,14 +1,36 @@
+# Tool Nexus Portal - Robots.txt
+# 允许所有搜索引擎爬虫访问
+
+User-agent: *
+Allow: /
+
+# 特定搜索引擎爬虫配置
 User-agent: Googlebot
 Allow: /
+Crawl-delay: 1
 
 User-agent: Bingbot
 Allow: /
+Crawl-delay: 1
 
+User-agent: Slurp
+Allow: /
+Crawl-delay: 1
+
+# 社交媒体爬虫
 User-agent: Twitterbot
 Allow: /
 
 User-agent: facebookexternalhit
 Allow: /
 
-User-agent: *
+User-agent: LinkedInBot
 Allow: /
+
+# 禁止访问的路径（如果有的话）
+# Disallow: /admin/
+# Disallow: /api/
+# Disallow: /*.json$
+
+# Sitemap位置
+Sitemap: https://tool-nexus-portal.com/sitemap.xml

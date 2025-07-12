@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { getToolById } from '@/registry/toolRegistry';
 import { useI18n } from '@/hooks/useI18n';
+import SEOHead from '@/components/seo/SEOHead';
 import NotFound from './NotFound';
 
 const ToolPage = () => {
@@ -19,7 +20,12 @@ const ToolPage = () => {
 
   const ToolComponent = tool.component;
   
-  return <ToolComponent />;
+  return (
+    <>
+      <SEOHead toolId={toolId} />
+      <ToolComponent />
+    </>
+  );
 };
 
 export default ToolPage;
