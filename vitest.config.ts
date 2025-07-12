@@ -12,7 +12,6 @@ export default defineConfig({
       include: ['**/*.{test,spec}.{ts,tsx}'],
     },
     includeSource: ['src/**/*.{js,ts,tsx}'],
-    types: ['vitest/globals', '@testing-library/jest-dom'],
   },
   resolve: {
     alias: {

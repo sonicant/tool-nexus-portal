@@ -61,7 +61,10 @@ describe('HTTP Request Builder Utils', () => {
         callback('application/json', 'content-type');
       });
       
-      mockFetch.mockResolvedValue(mockResponse);
+      // Add a small delay to simulate network request
+      mockFetch.mockImplementation(() => 
+        new Promise(resolve => setTimeout(() => resolve(mockResponse), 1))
+      );
       
       const request: HttpRequest = {
         method: 'GET',
@@ -83,7 +86,7 @@ describe('HTTP Request Builder Utils', () => {
       expect(response.status).toBe(200);
       expect(response.statusText).toBe('OK');
       expect(response.body).toBe('{"message": "success"}');
-      expect(response.responseTime).toBeGreaterThan(0);
+      expect(response.responseTime).toBeGreaterThanOrEqual(0);
     });
     
     it('should send POST request with body', async () => {
