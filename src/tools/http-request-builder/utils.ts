@@ -182,21 +182,16 @@ function isXmlString(str: string): boolean {
  * Format XML string with indentation
  */
 function formatXml(xml: string): string {
-  try {
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(xml, 'text/xml');
-    
-    // Check for parsing errors
-    const parserError = doc.querySelector('parsererror');
-    if (parserError) {
-      throw new Error('XML parsing error');
-    }
-    
-    return formatXmlNode(doc, 0);
-  } catch {
-    // Fallback to simple formatting if XML parsing fails
-    return xml.replace(/></g, '>\n<');
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(xml, 'text/xml');
+  
+  // Check for parsing errors
+  const parserError = doc.querySelector('parsererror');
+  if (parserError) {
+    throw new Error('XML parsing error');
   }
+  
+  return formatXmlNode(doc, 0);
 }
 
 /**

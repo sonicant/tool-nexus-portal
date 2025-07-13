@@ -23,26 +23,24 @@ const testConversion = (description: string, testFn: () => void) => {
 // 基础转换测试
 testConversion('基础 YAML 转 TOML', () => {
   const yamlContent = readFileSync(`${samplesDir}/sample1-basic.yaml`, 'utf8');
-  const result = yamlToToml(yamlContent, { indentSize: 2 });
+  const result = yamlToToml(yamlContent, 2);
   
   // 验证结果包含预期的键值对
-  if (!result.success || !result.data || 
-      !result.data.includes('name = "Sample Application"') ||
-      !result.data.includes('enabled = true') ||
-      !result.data.includes('[config]')) {
+  if (!result.includes('name = "Sample Application"') ||
+      !result.includes('enabled = true') ||
+      !result.includes('[config]')) {
     throw new Error('转换结果不包含预期内容');
   }
 });
 
 testConversion('基础 TOML 转 YAML', () => {
   const tomlContent = readFileSync(`${samplesDir}/sample1-basic.toml`, 'utf8');
-  const result = tomlToYaml(tomlContent, { indentSize: 2 });
+  const result = tomlToYaml(tomlContent, 2);
   
   // 验证结果包含预期的键值对
-  if (!result.success || !result.data ||
-      !result.data.includes('name: "Sample Application"') ||
-      !result.data.includes('enabled: true') ||
-      !result.data.includes('config:')) {
+  if (!result.includes('name: "Sample Application"') ||
+      !result.includes('enabled: true') ||
+      !result.includes('config:')) {
     throw new Error('转换结果不包含预期内容');
   }
 });
@@ -50,26 +48,24 @@ testConversion('基础 TOML 转 YAML', () => {
 // 复杂嵌套结构测试
 testConversion('复杂 YAML 转 TOML', () => {
   const yamlContent = readFileSync(`${samplesDir}/sample2-complex.yaml`, 'utf8');
-  const result = yamlToToml(yamlContent, { indentSize: 2 });
+  const result = yamlToToml(yamlContent, 2);
   
   // 验证结果包含预期的嵌套结构
-  if (!result.success || !result.data ||
-      !result.data.includes('[database]') ||
-      !result.data.includes('[[database.servers]]') ||
-      !result.data.includes('[clients]')) {
+  if (!result.includes('[database]') ||
+      !result.includes('[[database.servers]]') ||
+      !result.includes('[clients]')) {
     throw new Error('转换结果不包含预期的嵌套结构');
   }
 });
 
 testConversion('复杂 TOML 转 YAML', () => {
   const tomlContent = readFileSync(`${samplesDir}/sample2-complex.toml`, 'utf8');
-  const result = tomlToYaml(tomlContent, { indentSize: 2 });
+  const result = tomlToYaml(tomlContent, 2);
   
   // 验证结果包含预期的嵌套结构
-  if (!result.success || !result.data ||
-      !result.data.includes('database:') ||
-      !result.data.includes('servers:') ||
-      !result.data.includes('clients:')) {
+  if (!result.includes('database:') ||
+      !result.includes('servers:') ||
+      !result.includes('clients:')) {
     throw new Error('转换结果不包含预期的嵌套结构');
   }
 });
@@ -77,24 +73,22 @@ testConversion('复杂 TOML 转 YAML', () => {
 // 边界情况测试
 testConversion('边界情况 YAML 转 TOML', () => {
   const yamlContent = readFileSync(`${samplesDir}/sample3-edge.yaml`, 'utf8');
-  const result = yamlToToml(yamlContent, { indentSize: 2 });
+  const result = yamlToToml(yamlContent, 2);
   
   // 验证特殊字符和Unicode处理
-  if (!result.success || !result.data ||
-      !result.data.includes('unicode = "こんにちは"') ||
-      !result.data.includes('[numbers]')) {
+  if (!result.includes('unicode = "こんにちは"') ||
+      !result.includes('[numbers]')) {
     throw new Error('边界情况转换失败');
   }
 });
 
 testConversion('边界情况 TOML 转 YAML', () => {
   const tomlContent = readFileSync(`${samplesDir}/sample3-edge.toml`, 'utf8');
-  const result = tomlToYaml(tomlContent, { indentSize: 2 });
+  const result = tomlToYaml(tomlContent, 2);
   
   // 验证特殊字符和Unicode处理
-  if (!result.success || !result.data ||
-      !result.data.includes('unicode: "こんにちは"') ||
-      !result.data.includes('numbers:')) {
+  if (!result.includes('unicode: "こんにちは"') ||
+      !result.includes('numbers:')) {
     throw new Error('边界情况转换失败');
   }
 });
@@ -103,12 +97,11 @@ testConversion('边界情况 TOML 转 YAML', () => {
 testConversion('不同缩进大小测试', () => {
   const yamlContent = 'config:\n  debug: true';
   
-  const result2 = tomlToYaml('config.debug = true', { indentSize: 2 });
-  const result4 = tomlToYaml('config.debug = true', { indentSize: 4 });
+  const result2 = tomlToYaml('config.debug = true', 2);
+  const result4 = tomlToYaml('config.debug = true', 4);
   
   // 验证不同缩进
-  if (!result2.success || !result4.success || !result2.data || !result4.data ||
-      !result2.data.includes('  debug:') || !result4.data.includes('    debug:')) {
+  if (!result2.includes('  debug:') || !result4.includes('    debug:')) {
     throw new Error('缩进设置未正确应用');
   }
 });
@@ -117,18 +110,26 @@ testConversion('不同缩进大小测试', () => {
 testConversion('无效 YAML 错误处理', () => {
   const invalidYaml = readFileSync(`${samplesDir}/invalid.yaml`, 'utf8');
   
-  const result = yamlToToml(invalidYaml, { indentSize: 2 });
-  if (result.success || !result.error) {
-    throw new Error('应该返回错误结果但没有');
+  try {
+    yamlToToml(invalidYaml, 2);
+    throw new Error('应该抛出错误但没有');
+  } catch (error) {
+    if (error.message !== 'Invalid YAML format') {
+      throw new Error(`预期错误消息 'Invalid YAML format', 实际得到: ${error.message}`);
+    }
   }
 });
 
 testConversion('无效 TOML 错误处理', () => {
   const invalidToml = readFileSync(`${samplesDir}/invalid.toml`, 'utf8');
   
-  const result = tomlToYaml(invalidToml, { indentSize: 2 });
-  if (result.success || !result.error) {
-    throw new Error('应该返回错误结果但没有');
+  try {
+    tomlToYaml(invalidToml, 2);
+    throw new Error('应该抛出错误但没有');
+  } catch (error) {
+    if (error.message !== 'Invalid TOML format') {
+      throw new Error(`预期错误消息 'Invalid TOML format', 实际得到: ${error.message}`);
+    }
   }
 });
 
@@ -137,20 +138,13 @@ testConversion('往返转换一致性测试', () => {
   const originalYaml = readFileSync(`${samplesDir}/sample1-basic.yaml`, 'utf8');
   
   // YAML -> TOML -> YAML
-  const tomlResult = yamlToToml(originalYaml, { indentSize: 2 });
-  if (!tomlResult.success || !tomlResult.data) {
-    throw new Error('YAML 转 TOML 失败');
-  }
-  
-  const backToYaml = tomlToYaml(tomlResult.data, { indentSize: 2 });
-  if (!backToYaml.success || !backToYaml.data) {
-    throw new Error('TOML 转 YAML 失败');
-  }
+  const tomlResult = yamlToToml(originalYaml, 2);
+  const backToYaml = tomlToYaml(tomlResult, 2);
   
   // 解析两个YAML文档并比较内容（忽略格式差异）
   const yaml = require('js-yaml');
   const originalParsed = yaml.load(originalYaml);
-  const roundTripParsed = yaml.load(backToYaml.data);
+  const roundTripParsed = yaml.load(backToYaml);
   
   if (JSON.stringify(originalParsed) !== JSON.stringify(roundTripParsed)) {
     throw new Error('往返转换后数据不一致');
