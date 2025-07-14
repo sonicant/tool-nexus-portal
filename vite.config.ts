@@ -53,8 +53,15 @@ export default defineConfig(({ mode }) => ({
             if (id.includes('@radix-ui')) {
               return 'ui';
             }
-            if (id.includes('mermaid') || id.includes('katex') || id.includes('cytoscape')) {
-              return 'visualization';
+            // Separate visualization libraries to avoid dependency conflicts
+            if (id.includes('mermaid')) {
+              return 'mermaid';
+            }
+            if (id.includes('katex')) {
+              return 'katex';
+            }
+            if (id.includes('cytoscape')) {
+              return 'cytoscape';
             }
             return 'vendor';
           }
