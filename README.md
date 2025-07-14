@@ -10,7 +10,7 @@
 
 [🇨🇳 中文文档](./README_zh.md) | [🤝 Contributing](./CONTRIBUTING.md) | [📋 Code of Conduct](./CODE_OF_CONDUCT.md)
 
-[🌍 Online version](https://tool-nexus-portal.lovable.app/)
+[🌍 Online version]([https://tool-nexus-portal.lovable.app/](https://www.tool-nexus.pro/))
 
 
 ## ✨ Features
@@ -155,9 +155,8 @@ This project is licensed under the MIT License - see the [LICENSE](./LICENSE) fi
 
 If you have any questions or need help:
 
-- 📧 Create an [Issue](https://github.com/your-username/tool-nexus-portal/issues)
-- 💬 Start a [Discussion](https://github.com/your-username/tool-nexus-portal/discussions)
-- 📖 Check our [Documentation](https://github.com/your-username/tool-nexus-portal/wiki)
+- 📧 Create an [Issue](https://github.com/sonicant/tool-nexus-portal/issues)
+- 💬 Start a [Discussion](https://github.com/sonicant/tool-nexus-portal/discussions)
 
 ---
 
