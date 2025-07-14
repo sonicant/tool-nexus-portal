@@ -16,47 +16,65 @@ import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
-const AppContent = () => (
-  <FavoritesProvider>
-    <SidebarProvider>
-      <div className="min-h-screen flex w-full">
-        <AppSidebar />
-        <SidebarInset className="flex-1">
-          <Header />
-          <div className="flex-1">
-            <div className="container mx-auto px-4 py-4">
-              <Breadcrumb />
+const AppContent = () => {
+  console.log('App.tsx: AppContent rendering...');
+  
+  return (
+    <FavoritesProvider>
+      <SidebarProvider>
+        <div className="min-h-screen flex w-full">
+          <AppSidebar />
+          <SidebarInset className="flex-1">
+            <Header />
+            <div className="flex-1">
+              <div className="container mx-auto px-4 py-4">
+                <Breadcrumb />
+              </div>
+              <Routes>
+                <Route path="/" element={<Index />} />
+                <Route path="/tools/:toolId" element={<ToolPage />} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
             </div>
-            <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="/tools/:toolId" element={<ToolPage />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </div>
-        </SidebarInset>
-      </div>
-    </SidebarProvider>
-  </FavoritesProvider>
-);
+          </SidebarInset>
+        </div>
+      </SidebarProvider>
+    </FavoritesProvider>
+  );
+};
 
 const App = () => {
-  const i18nState = useI18nProvider();
+  console.log('App.tsx: App component rendering...');
+  
+  try {
+    const i18nState = useI18nProvider();
+    console.log('App.tsx: i18n state loaded:', !!i18nState);
 
-  return (
-    <QueryClientProvider client={queryClient}>
-      <ThemeProvider>
-        <I18nContext.Provider value={i18nState}>
-          <TooltipProvider>
-            <Toaster />
-            <Sonner />
-            <BrowserRouter>
-              <AppContent />
-            </BrowserRouter>
-          </TooltipProvider>
-        </I18nContext.Provider>
-      </ThemeProvider>
-    </QueryClientProvider>
-  );
+    return (
+      <QueryClientProvider client={queryClient}>
+        <ThemeProvider>
+          <I18nContext.Provider value={i18nState}>
+            <TooltipProvider>
+              <Toaster />
+              <Sonner />
+              <BrowserRouter>
+                <AppContent />
+              </BrowserRouter>
+            </TooltipProvider>
+          </I18nContext.Provider>
+        </ThemeProvider>
+      </QueryClientProvider>
+    );
+  } catch (error) {
+    console.error('App.tsx: Error in App component:', error);
+    return (
+      <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif' }}>
+        <h1>Application Error</h1>
+        <p>There was an error loading the application. Check the console for details.</p>
+        <pre>{error instanceof Error ? error.message : 'Unknown error'}</pre>
+      </div>
+    );
+  }
 };
 
 export default App;
