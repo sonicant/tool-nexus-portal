@@ -5,6 +5,7 @@ import { useI18n } from '@/hooks/useI18n';
 import { GitCompare } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { HomeButton } from '@/components/ui/home-button';
+import { PrivacyNotice } from '@/components/ui/privacy-notice';
 
 // JSON diff utility
 const diffJson = (obj1: any, obj2: any, path = ''): Array<{ type: 'added' | 'removed' | 'changed'; path: string; oldValue?: any; newValue?: any }> => {
@@ -209,6 +210,8 @@ export const JsonDiffTool = () => {
           </CardContent>
         </Card>
       )}
+      
+      <PrivacyNotice />
     </div>
   );
 };

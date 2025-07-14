@@ -6,6 +6,7 @@ import { GitCompare } from 'lucide-react';
 import { oneDark, oneLight } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { useTheme } from '@/hooks/useTheme';
 import { HomeButton } from '@/components/ui/home-button';
+import { PrivacyNotice } from '@/components/ui/privacy-notice';
 
 // Simple diff algorithm
 const diffText = (text1: string, text2: string) => {
@@ -164,6 +165,8 @@ export const TextDiffTool = () => {
           </CardContent>
         </Card>
       )}
+      
+      <PrivacyNotice />
     </div>
   );
 };

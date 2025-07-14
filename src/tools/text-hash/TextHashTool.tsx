@@ -7,6 +7,7 @@ import { useI18n } from '@/hooks/useI18n';
 import { Copy, Hash } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { HomeButton } from '@/components/ui/home-button';
+import { PrivacyNotice } from '@/components/ui/privacy-notice';
 
 // Hash utilities
 const hashText = async (text: string, algorithm: string): Promise<string> => {
@@ -162,6 +163,8 @@ export const TextHashTool = () => {
           </CardContent>
         </Card>
       </div>
+      
+      <PrivacyNotice />
     </div>
   );
 };

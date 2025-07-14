@@ -11,6 +11,7 @@ import { FileText, Upload, CheckCircle, XCircle, AlertTriangle } from 'lucide-re
 import { useToast } from '@/hooks/use-toast';
 import { useI18n } from '@/hooks/useI18n';
 import { HomeButton } from '@/components/ui/home-button';
+import { PrivacyNotice } from '@/components/ui/privacy-notice';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { oneDark, oneLight } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { useTheme } from '@/hooks/useTheme';
@@ -634,6 +635,8 @@ const XmlValidatorTool: React.FC = () => {
           </CardContent>
         </Card>
       )}
+      
+      <PrivacyNotice />
     </div>
   );
 };

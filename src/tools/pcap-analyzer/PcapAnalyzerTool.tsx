@@ -6,6 +6,7 @@ import { Separator } from '@/components/ui/separator';
 import { Network, AlertTriangle } from 'lucide-react';
 import { useI18n } from '@/hooks/useI18n';
 import { HomeButton } from '@/components/ui/home-button';
+import { PrivacyNotice } from '@/components/ui/privacy-notice';
 import { FileUpload } from './components/FileUpload';
 import { FilterControls } from './components/FilterControls';
 import { PacketList } from './components/PacketList';
@@ -294,6 +295,8 @@ const PcapAnalyzerTool: React.FC = () => {
           </CardContent>
         </Card>
       )}
+      
+      <PrivacyNotice />
     </div>
   );
 };

@@ -30,7 +30,9 @@ export const translations: Translations = {
       search: 'Search tools...',
       searchPlaceholder: 'Search by tool name or description',
       suggestNewTool: 'Suggest New Tool',
-      noToolsFound: 'No tools found matching your search'
+      noToolsFound: 'No tools found matching your search',
+      privacyNotice: 'Privacy Notice',
+      privacyDescription: 'All data processing is performed locally in your browser. No data is transmitted to our servers, ensuring your privacy and security.'
     },
     categories: {
       hash: 'Hash & Encoding',
@@ -429,7 +431,9 @@ export const translations: Translations = {
       search: '搜索工具...',
       searchPlaceholder: '按工具名称或描述搜索',
       suggestNewTool: '建议增加新工具',
-      noToolsFound: '未找到匹配的工具'
+      noToolsFound: '未找到匹配的工具',
+      privacyNotice: '隐私声明',
+      privacyDescription: '所有数据处理均在您的浏览器本地进行。不会向我们的服务器传输任何数据，确保您的隐私和安全。'
     },
     categories: {
       hash: '哈希与编码',

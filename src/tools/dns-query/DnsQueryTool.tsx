@@ -8,6 +8,7 @@ import { useI18n } from '@/hooks/useI18n';
 import { Globe, Copy, Clock, Shield, Server } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { HomeButton } from '@/components/ui/home-button';
+import { PrivacyNotice } from '@/components/ui/privacy-notice';
 
 interface DnsRecord {
   name: string;
@@ -584,6 +585,8 @@ export const DnsQueryTool = () => {
           </CardContent>
         </Card>
       )}
+      
+      <PrivacyNotice />
     </div>
   );
 };

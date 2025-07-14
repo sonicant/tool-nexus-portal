@@ -7,6 +7,7 @@ import { useI18n } from '@/hooks/useI18n';
 import { Link, Copy } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { HomeButton } from '@/components/ui/home-button';
+import { PrivacyNotice } from '@/components/ui/privacy-notice';
 
 export const UrlEncoderTool = () => {
   const { t } = useI18n();
@@ -241,6 +242,8 @@ export const UrlEncoderTool = () => {
           </div>
         </CardContent>
       </Card>
+      
+      <PrivacyNotice />
     </div>
   );
 };

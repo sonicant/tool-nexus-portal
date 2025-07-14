@@ -8,6 +8,7 @@ import { useI18n } from '@/hooks/useI18n';
 import { QrCode, Download } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { HomeButton } from '@/components/ui/home-button';
+import { PrivacyNotice } from '@/components/ui/privacy-notice';
 import QRCode from 'qrcode';
 
 export const QrGeneratorTool = () => {
@@ -206,6 +207,8 @@ export const QrGeneratorTool = () => {
           </div>
         </CardContent>
       </Card>
+      
+      <PrivacyNotice />
     </div>
   );
 };

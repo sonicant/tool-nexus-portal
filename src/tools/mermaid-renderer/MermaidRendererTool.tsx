@@ -19,6 +19,7 @@ import { useTheme } from '@/hooks/useTheme';
 
 // Additional UI components
 import { HomeButton } from '@/components/ui/home-button';
+import { PrivacyNotice } from '@/components/ui/privacy-notice';
 
 // Syntax highlighting for code display
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
@@ -695,8 +696,8 @@ export const MermaidRendererTool = () => {
           </CardContent>
         </Card>
       </div>
-
-
+      
+      <PrivacyNotice />
     </div>
   );
 };
