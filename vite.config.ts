@@ -44,30 +44,24 @@ export default defineConfig(({ mode }) => ({
     // SEO优化：代码分割
     rollupOptions: {
       output: {
-        manualChunks: {
-          // 将工具组件分离到单独的chunk
-          'tools': [
-            './src/tools/regex-tester/RegexTesterTool.tsx',
-            './src/tools/json-xml-converter/JsonXmlConverterTool.tsx',
-            './src/tools/timestamp-converter/TimestampConverterTool.tsx',
-            './src/tools/uuid-generator/UuidGeneratorTool.tsx',
-            './src/tools/text-diff/TextDiffTool.tsx',
-            './src/tools/text-hash/TextHashTool.tsx',
-            './src/tools/url-encoder/UrlEncoderTool.tsx',
-            './src/tools/qr-generator/QrGeneratorTool.tsx',
-            './src/tools/yaml-toml-converter/YamlTomlConverterTool.tsx',
-            './src/tools/xml-validator/XmlValidatorTool.tsx',
-            './src/tools/subnet-calculator/SubnetCalculatorTool.tsx',
-            './src/tools/dns-query/DnsQueryTool.tsx',
-            './src/tools/http-request-builder/HttpRequestBuilderTool.tsx',
-            './src/tools/json-diff/JsonDiffTool.tsx',
-            './src/tools/mermaid-renderer/MermaidRendererTool.tsx',
-            './src/tools/pcap-analyzer/PcapAnalyzerTool.tsx'
-          ],
-          // UI组件库
-          'ui': ['@radix-ui/react-accordion', '@radix-ui/react-dialog', '@radix-ui/react-dropdown-menu'],
-          // 第三方库
-          'vendor': ['react', 'react-dom', 'react-router-dom']
+        manualChunks: (id) => {
+          // Keep React and React-DOM together to avoid context issues
+          if (id.includes('node_modules')) {
+            if (id.includes('react') || id.includes('react-dom')) {
+              return 'react-vendor';
+            }
+            if (id.includes('@radix-ui')) {
+              return 'ui';
+            }
+            if (id.includes('mermaid') || id.includes('katex') || id.includes('cytoscape')) {
+              return 'visualization';
+            }
+            return 'vendor';
+          }
+          // Group tools together
+          if (id.includes('/src/tools/')) {
+            return 'tools';
+          }
         }
       }
     },
