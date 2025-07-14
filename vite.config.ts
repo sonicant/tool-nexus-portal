@@ -40,36 +40,20 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  optimizeDeps: {
+    include: ['mermaid', 'katex', 'cytoscape'],
+    exclude: []
+  },
   build: {
+    // 模块兼容性配置
+    commonjsOptions: {
+      include: [/node_modules/],
+      transformMixedEsModules: true
+    },
     // SEO优化：代码分割
     rollupOptions: {
       output: {
-        manualChunks: (id) => {
-          // Keep React and React-DOM together to avoid context issues
-          if (id.includes('node_modules')) {
-            if (id.includes('react') || id.includes('react-dom')) {
-              return 'react-vendor';
-            }
-            if (id.includes('@radix-ui')) {
-              return 'ui';
-            }
-            // Separate visualization libraries to avoid dependency conflicts
-            if (id.includes('mermaid')) {
-              return 'mermaid';
-            }
-            if (id.includes('katex')) {
-              return 'katex';
-            }
-            if (id.includes('cytoscape')) {
-              return 'cytoscape';
-            }
-            return 'vendor';
-          }
-          // Group tools together
-          if (id.includes('/src/tools/')) {
-            return 'tools';
-          }
-        }
+        format: 'es'
       }
     },
     // 启用源码映射以便调试

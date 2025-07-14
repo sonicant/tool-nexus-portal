@@ -12,7 +12,8 @@ import { HomeButton } from '@/components/ui/home-button';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { oneDark, oneLight } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { useTheme } from '@/hooks/useTheme';
-import mermaid from 'mermaid';
+// 使用动态导入避免循环依赖问题
+// import mermaid from 'mermaid';
 
 interface MermaidTemplate {
   id: string;
@@ -226,30 +227,48 @@ export const MermaidRendererTool = () => {
   const { theme } = useTheme();
   const [code, setCode] = useState(templates[0].code);
   const [selectedTemplate, setSelectedTemplate] = useState(templates[0].id);
-  const [isRendering, setIsRendering] = useState(false);
+  const [isRendering, setIsRendering] = useState(true);
   const [renderError, setRenderError] = useState<string | null>(null);
   const [isFullWidth, setIsFullWidth] = useState(false);
   const diagramRef = useRef<HTMLDivElement>(null);
   const [diagramSvg, setDiagramSvg] = useState<string>('');
+  const [mermaidInstance, setMermaidInstance] = useState<any>(null);
 
-  // Initialize Mermaid
+  // Initialize Mermaid on component mount and when theme changes
   useEffect(() => {
-    mermaid.initialize({
-      startOnLoad: false,
-      theme: theme === 'dark' ? 'dark' : 'default',
-      securityLevel: 'loose',
-      fontFamily: 'ui-sans-serif, system-ui, sans-serif',
-      logLevel: 'error',
-      suppressErrorRendering: true
-    });
+    const initializeMermaid = async () => {
+      setIsRendering(true);
+      try {
+        const mermaid = (await import('mermaid')).default;
+        mermaid.initialize({
+          startOnLoad: false,
+          theme: theme === 'dark' ? 'dark' : 'neutral',
+          securityLevel: 'loose',
+          fontFamily: 'ui-sans-serif, system-ui, sans-serif',
+          logLevel: 'error',
+          suppressErrorRendering: true
+        });
+        setMermaidInstance(() => mermaid);
+      } catch (error) {
+        console.error('Failed to initialize mermaid', error);
+        setRenderError('Failed to initialize Mermaid library.');
+        setIsRendering(false);
+      }
+    };
+    initializeMermaid();
   }, [theme]);
 
-  // Render diagram when code changes
+  // Render diagram when code or mermaid instance changes
   useEffect(() => {
+    if (!mermaidInstance) {
+      return; // Wait for mermaid to be initialized
+    }
+
     const renderDiagram = async () => {
       if (!code.trim()) {
         setDiagramSvg('');
         setRenderError(null);
+        setIsRendering(false);
         return;
       }
 
@@ -257,22 +276,14 @@ export const MermaidRendererTool = () => {
       setRenderError(null);
 
       try {
-        // Clear previous diagram
-        if (diagramRef.current) {
-          diagramRef.current.innerHTML = '';
-        }
-
         // Generate unique ID for this diagram
         const diagramId = `mermaid-${Date.now()}`;
         
         // Validate syntax first
-        const isValid = await mermaid.parse(code);
-        if (!isValid) {
-          throw new Error('Invalid Mermaid syntax');
-        }
+        await mermaidInstance.parse(code);
         
-        // Validate and render
-        const { svg } = await mermaid.render(diagramId, code);
+        // Render
+        const { svg } = await mermaidInstance.render(diagramId, code);
         setDiagramSvg(svg);
       } catch (error) {
         console.error('Mermaid render error:', error);
@@ -285,7 +296,7 @@ export const MermaidRendererTool = () => {
 
     const timeoutId = setTimeout(renderDiagram, 500); // Debounce rendering
     return () => clearTimeout(timeoutId);
-  }, [code]);
+  }, [code, mermaidInstance]);
 
   const handleTemplateChange = (templateId: string) => {
     const template = templates.find(t => t.id === templateId);
