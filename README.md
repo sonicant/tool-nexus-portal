@@ -10,7 +10,7 @@
 
 [🇨🇳 中文文档](./README_zh.md) | [🤝 Contributing](./CONTRIBUTING.md) | [📋 Code of Conduct](./CODE_OF_CONDUCT.md)
 
-[🌍 Online version]([https://tool-nexus-portal.lovable.app/](https://www.tool-nexus.pro/))
+[🌍 Online version](https://www.tool-nexus.pro/)
 
 
 ## ✨ Features
