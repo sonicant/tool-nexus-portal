@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .debug-info {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 10px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .success { color: green; }
+        .error { color: red; }
+    </style>
+</head>
+<body>
+    <h1>Debug Information</h1>
+    
+    <div class="debug-info">
+        <h2>Basic HTML Loading</h2>
+        <p class="success">✓ HTML file loaded successfully</p>
+    </div>
+    
+    <div class="debug-info">
+        <h2>JavaScript Test</h2>
+        <p id="js-test">❌ JavaScript not executed</p>
+    </div>
+    
+    <div class="debug-info">
+        <h2>Console Logs</h2>
+        <p>Check browser console for any error messages</p>
+    </div>
+    
+    <div class="debug-info">
+        <h2>Network Test</h2>
+        <p id="network-test">Testing...</p>
+    </div>
+    
+    <script>
+        // Test basic JavaScript execution
+        document.getElementById('js-test').innerHTML = '<span class="success">✓ JavaScript executed successfully</span>';
+        
+        // Log debug information
+        console.log('Debug page loaded at:', new Date().toISOString());
+        console.log('User Agent:', navigator.userAgent);
+        console.log('Current URL:', window.location.href);
+        
+        // Test fetch capability
+        fetch('./favicon.ico')
+            .then(response => {
+                if (response.ok) {
+                    document.getElementById('network-test').innerHTML = '<span class="success">✓ Network requests working</span>';
+                } else {
+                    document.getElementById('network-test').innerHTML = '<span class="error">❌ Network request failed: ' + response.status + '</span>';
+                }
+            })
+            .catch(error => {
+                document.getElementById('network-test').innerHTML = '<span class="error">❌ Network error: ' + error.message + '</span>';
+                console.error('Network test failed:', error);
+            });
+    </script>
+</body>
+</html>
