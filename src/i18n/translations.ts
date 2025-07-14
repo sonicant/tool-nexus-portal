@@ -26,7 +26,11 @@ export const translations: Translations = {
       success: 'Success',
       error: 'Error',
       copied: 'Copied to clipboard',
-      github: 'View on GitHub'
+      github: 'View on GitHub',
+      search: 'Search tools...',
+      searchPlaceholder: 'Search by tool name or description',
+      suggestNewTool: 'Suggest New Tool',
+      noToolsFound: 'No tools found matching your search'
     },
     categories: {
       hash: 'Hash & Encoding',
@@ -421,7 +425,11 @@ export const translations: Translations = {
       success: '成功',
       error: '错误',
       copied: '已复制',
-      github: '在 GitHub 上查看'
+      github: '在 GitHub 上查看',
+      search: '搜索工具...',
+      searchPlaceholder: '按工具名称或描述搜索',
+      suggestNewTool: '建议增加新工具',
+      noToolsFound: '未找到匹配的工具'
     },
     categories: {
       hash: '哈希与编码',
