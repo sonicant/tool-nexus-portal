@@ -5,6 +5,8 @@ import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
+  // 添加基础路径配置
+  base: '/',
   server: {
     host: "::",
     port: 8080,
@@ -79,15 +81,15 @@ export default defineConfig(({ mode }) => ({
         drop_debugger: mode === 'production'
       }
     }
-  },
-  // SEO优化：预加载关键资源
-  experimental: {
-    renderBuiltUrl(filename, { hostType }) {
-      if (hostType === 'js') {
-        return { runtime: `window.__assetsPath(${JSON.stringify(filename)})` };
-      } else {
-        return { relative: true };
-      }
-    }
   }
+  // 移除实验性配置，这可能导致生产环境资源路径问题
+  // experimental: {
+  //   renderBuiltUrl(filename, { hostType }) {
+  //     if (hostType === 'js') {
+  //       return { runtime: `window.__assetsPath(${JSON.stringify(filename)})` };
+  //     } else {
+  //       return { relative: true };
+  //     }
+  //   }
+  // }
 }));
