@@ -9,7 +9,12 @@ export default defineConfig(({ mode }) => ({
   base: '/',
   server: {
     host: "::",
-    port: 8080,
+    port: 8081,
+    cors: true,
+    // 移除 X-Frame-Options 以允许 iframe 嵌入
+    // headers: {
+    //   'X-Frame-Options': 'SAMEORIGIN',
+    // },
     proxy: {
         '/api/dns-google': {
           target: 'https://dns.google',
