@@ -33,7 +33,7 @@ export const useTheme = () => {
   useEffect(() => {
     const handleMessage = (event: MessageEvent) => {
       // 安全检查：确保消息来自可信源
-      if (event.origin !== window.location.origin.replace(':8082', ':8080')) {
+      if (event.origin !== import.meta.env.VITE_PARENT_APP_URL) {
         return;
       }
       

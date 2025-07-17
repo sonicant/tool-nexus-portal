@@ -1,3 +1,4 @@
+import { Toaster as ShadcnToaster } from "@/components/ui/toaster";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -55,8 +56,8 @@ const App = () => {
         <ThemeProvider>
           <I18nContext.Provider value={i18nState}>
             <TooltipProvider>
-              <Toaster />
               <Sonner />
+              <ShadcnToaster />
               <BrowserRouter>
                 <AppContent />
               </BrowserRouter>
