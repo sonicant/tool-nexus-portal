@@ -49,6 +49,35 @@ export const useTheme = () => {
     return () => window.removeEventListener('message', handleMessage);
   }, []);
 
+  // 监听URL参数变化（当用户直接修改URL时）
+  useEffect(() => {
+    const handlePopState = () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const urlTheme = urlParams.get('theme') as Theme;
+      if (urlTheme && (urlTheme === 'dark' || urlTheme === 'light')) {
+        setTheme(urlTheme);
+      }
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
+  // 监听URL hash变化和手动URL修改
+  useEffect(() => {
+    const checkUrlTheme = () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const urlTheme = urlParams.get('theme') as Theme;
+      if (urlTheme && (urlTheme === 'dark' || urlTheme === 'light') && urlTheme !== theme) {
+        setTheme(urlTheme);
+      }
+    };
+
+    // 定期检查URL参数变化（用于处理手动修改地址栏的情况）
+    const interval = setInterval(checkUrlTheme, 1000);
+    return () => clearInterval(interval);
+  }, [theme]);
+
   const toggleTheme = () => {
     setTheme(prev => prev === 'dark' ? 'light' : 'dark');
   };
