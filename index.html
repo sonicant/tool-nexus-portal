@@ -13,6 +13,25 @@
     <!-- PWA Manifest -->
     <link rel="manifest" href="/manifest.json" />
     
+    <!-- Performance & Resource Hints -->
+    <link rel="prefetch" href="/manifest.json" />
+    <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="//cdn.jsdelivr.net" />
+    <link rel="modulepreload" href="/src/main.tsx" />
+    
+    <!-- Critical CSS Optimization -->
+    <style>
+      /* Critical above-the-fold styles */
+      body { margin: 0; font-family: Inter, system-ui, sans-serif; }
+      .loading-spinner { display: flex; align-items: center; justify-content: center; min-height: 200px; }
+      .loading-spinner::after { 
+        content: ''; width: 24px; height: 24px; border: 2px solid #e5e7eb; 
+        border-top: 2px solid #3b82f6; border-radius: 50%; animation: spin 1s linear infinite; 
+      }
+      @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+      #root { min-height: 100vh; }
+    </style>
+    
     <!-- Language Alternates -->
     <link rel="alternate" hreflang="en" href="https://tool-nexus-portal.com/" />
     <link rel="alternate" hreflang="zh" href="https://tool-nexus-portal.com/?lang=zh" />

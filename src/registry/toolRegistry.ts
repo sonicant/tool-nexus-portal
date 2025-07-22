@@ -1,22 +1,23 @@
+import { lazy } from 'react';
 import { ToolMeta, ToolCategory } from '@/types/tool';
 
-// Import tool components
-import { TextHashTool } from '@/tools/text-hash/TextHashTool';
-import { UuidGeneratorTool } from '@/tools/uuid-generator/UuidGeneratorTool';
-import { TextDiffTool } from '@/tools/text-diff/TextDiffTool';
-import { JsonDiffTool } from '@/tools/json-diff/JsonDiffTool';
-import { JsonXmlConverterTool } from '@/tools/json-xml-converter/JsonXmlConverterTool';
-import { UrlEncoderTool } from '@/tools/url-encoder/UrlEncoderTool';
-import { SubnetCalculatorTool } from '@/tools/subnet-calculator/SubnetCalculatorTool';
-import { QrGeneratorTool } from '@/tools/qr-generator/QrGeneratorTool';
-import { YamlTomlConverterTool } from '@/tools/yaml-toml-converter/YamlTomlConverterTool';
-import { DnsQueryTool } from '@/tools/dns-query/DnsQueryTool';
-import { XmlValidatorTool } from '@/tools/xml-validator/XmlValidatorTool';
-import { MermaidRendererTool } from '@/tools/mermaid-renderer/MermaidRendererTool';
-import HttpRequestBuilderTool from '@/tools/http-request-builder/HttpRequestBuilderTool';
-import { TimestampConverterTool } from '@/tools/timestamp-converter/TimestampConverterTool';
-import { RegexTesterTool } from '@/tools/regex-tester/RegexTesterTool';
-import PcapAnalyzerTool from '@/tools/pcap-analyzer/PcapAnalyzerTool';
+// Lazy load tool components for better performance
+const TextHashTool = lazy(() => import('@/tools/text-hash/TextHashTool').then(module => ({ default: module.TextHashTool })));
+const UuidGeneratorTool = lazy(() => import('@/tools/uuid-generator/UuidGeneratorTool').then(module => ({ default: module.UuidGeneratorTool })));
+const TextDiffTool = lazy(() => import('@/tools/text-diff/TextDiffTool').then(module => ({ default: module.TextDiffTool })));
+const JsonDiffTool = lazy(() => import('@/tools/json-diff/JsonDiffTool').then(module => ({ default: module.JsonDiffTool })));
+const JsonXmlConverterTool = lazy(() => import('@/tools/json-xml-converter/JsonXmlConverterTool').then(module => ({ default: module.JsonXmlConverterTool })));
+const UrlEncoderTool = lazy(() => import('@/tools/url-encoder/UrlEncoderTool').then(module => ({ default: module.UrlEncoderTool })));
+const SubnetCalculatorTool = lazy(() => import('@/tools/subnet-calculator/SubnetCalculatorTool').then(module => ({ default: module.SubnetCalculatorTool })));
+const QrGeneratorTool = lazy(() => import('@/tools/qr-generator/QrGeneratorTool').then(module => ({ default: module.QrGeneratorTool })));
+const YamlTomlConverterTool = lazy(() => import('@/tools/yaml-toml-converter/YamlTomlConverterTool').then(module => ({ default: module.YamlTomlConverterTool })));
+const DnsQueryTool = lazy(() => import('@/tools/dns-query/DnsQueryTool').then(module => ({ default: module.DnsQueryTool })));
+const XmlValidatorTool = lazy(() => import('@/tools/xml-validator/XmlValidatorTool').then(module => ({ default: module.XmlValidatorTool })));
+const MermaidRendererTool = lazy(() => import('@/tools/mermaid-renderer/MermaidRendererTool').then(module => ({ default: module.MermaidRendererTool })));
+const HttpRequestBuilderTool = lazy(() => import('@/tools/http-request-builder/HttpRequestBuilderTool'));
+const TimestampConverterTool = lazy(() => import('@/tools/timestamp-converter/TimestampConverterTool').then(module => ({ default: module.TimestampConverterTool })));
+const RegexTesterTool = lazy(() => import('@/tools/regex-tester/RegexTesterTool').then(module => ({ default: module.RegexTesterTool })));
+const PcapAnalyzerTool = lazy(() => import('@/tools/pcap-analyzer/PcapAnalyzerTool'));
 
 // Import tool metadata
 import { textHashMeta } from '@/tools/text-hash/meta';
