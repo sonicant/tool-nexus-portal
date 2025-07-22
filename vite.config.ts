@@ -9,7 +9,7 @@ export default defineConfig(({ mode }) => ({
   base: '/',
   server: {
     host: "::",
-    port: 8081,
+    port: 8080,
     cors: true,
     // 移除 X-Frame-Options 以允许 iframe 嵌入
     // headers: {
@@ -55,10 +55,20 @@ export default defineConfig(({ mode }) => ({
       include: [/node_modules/],
       transformMixedEsModules: true
     },
-    // SEO优化：代码分割
+    // SEO优化：代码分割和资源优化
     rollupOptions: {
       output: {
-        format: 'es'
+        format: 'es',
+        // 优化代码分割以提升SEO性能
+        manualChunks: {
+          'vendor-react': ['react', 'react-dom'],
+          'vendor-ui': ['@radix-ui/react-slot', 'class-variance-authority', 'clsx'],
+          'vendor-tools': ['mermaid', 'qrcode', 'js-yaml']
+        },
+        // 优化资源命名以便缓存
+        chunkFileNames: 'assets/[name]-[hash].js',
+        entryFileNames: 'assets/[name]-[hash].js',
+        assetFileNames: 'assets/[name]-[hash].[ext]'
       }
     },
     // 启用源码映射以便调试
@@ -68,9 +78,16 @@ export default defineConfig(({ mode }) => ({
     terserOptions: {
       compress: {
         drop_console: mode === 'production',
-        drop_debugger: mode === 'production'
+        drop_debugger: mode === 'production',
+        // SEO优化：移除未使用代码
+        unused: true,
+        dead_code: true
       }
-    }
+    },
+    // SEO优化：资源内联阈值
+    assetsInlineLimit: 4096,
+    // 启用CSS代码分割
+    cssCodeSplit: true
   }
   // 移除实验性配置，这可能导致生产环境资源路径问题
   // experimental: {
