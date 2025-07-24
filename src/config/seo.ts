@@ -24,7 +24,7 @@ export const defaultSEOConfig: SEOConfig = {
   description: 'Tool Nexus Portal is a comprehensive collection of professional developer tools including regex tester, JSON/XML converter, timestamp converter, UUID generator, text diff, and more. Boost your development productivity with our modern, powerful, and easy-to-use online tools.',
   keywords: ['developer tools', 'online tools', 'regex tester', 'JSON converter', 'XML converter', 'timestamp converter', 'UUID generator', 'text diff', 'productivity tools', '开发者工具', '在线工具'],
   author: 'Tool Nexus Portal',
-  siteUrl: 'https://tool-nexus-portal.com',
+  siteUrl: 'https://tool-nexus-portal.lovable.app',
   siteName: 'Tool Nexus Portal',
   defaultImage: '/placeholder.svg',
   language: 'en'

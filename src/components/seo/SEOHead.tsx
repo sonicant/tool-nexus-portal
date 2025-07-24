@@ -58,10 +58,22 @@ export const SEOHead = ({
     updateMetaTag('meta[property="og:image"]', finalImage);
     
     // 更新Twitter标签
-    updateMetaTag('meta[property="twitter:title"]', finalTitle);
-    updateMetaTag('meta[property="twitter:description"]', finalDescription);
-    updateMetaTag('meta[property="twitter:url"]', currentUrl);
-    updateMetaTag('meta[property="twitter:image"]', finalImage);
+    updateMetaTag('meta[name="twitter:card"]', 'summary_large_image');
+    updateMetaTag('meta[name="twitter:title"]', finalTitle);
+    updateMetaTag('meta[name="twitter:description"]', finalDescription);
+    updateMetaTag('meta[name="twitter:image"]', finalImage);
+    updateMetaTag('meta[name="twitter:site"]', '@toolnexusportal');
+    updateMetaTag('meta[name="twitter:creator"]', '@toolnexusportal');
+
+    // 添加额外的社交媒体标签
+    updateMetaTag('meta[property="og:type"]', toolId ? 'article' : 'website');
+    updateMetaTag('meta[property="og:site_name"]', defaultSEOConfig.siteName);
+    updateMetaTag('meta[property="og:locale"]', 'en_US');
+    updateMetaTag('meta[property="article:author"]', defaultSEOConfig.author);
+    
+    // 添加主题色标签
+    updateMetaTag('meta[name="theme-color"]', '#3b82f6');
+    updateMetaTag('meta[name="msapplication-TileColor"]', '#3b82f6');
 
     // 更新canonical链接
     let canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;

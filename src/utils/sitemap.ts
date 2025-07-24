@@ -21,7 +21,18 @@ export function generateSitemapData(): SitemapUrl[] {
     priority: '1.0'
   });
 
-  // 添加所有工具页面
+  // 添加工具分类页面
+  const categories = Array.from(new Set(tools.map(tool => tool.category)));
+  categories.forEach(category => {
+    urls.push({
+      loc: `${defaultSEOConfig.siteUrl}/#${category.toLowerCase().replace(/\s+/g, '-')}`,
+      lastmod: currentDate,
+      changefreq: 'weekly',
+      priority: '0.7'
+    });
+  });
+
+  // 添加所有工具页面，按类别分组
   tools.forEach(tool => {
     urls.push({
       loc: `${defaultSEOConfig.siteUrl}/tools/${tool.id}`,

@@ -1,10 +1,19 @@
+import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { ChevronRight, Home } from 'lucide-react';
+import { Home } from 'lucide-react';
 import { getToolById } from '@/registry/toolRegistry';
 import { useI18n } from '@/hooks/useI18n';
 import { toolSEOConfigs } from '@/config/seo';
+import {
+  Breadcrumb as BreadcrumbContainer,
+  BreadcrumbList,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from '@/components/ui/breadcrumb';
 
-interface BreadcrumbItem {
+interface BreadcrumbItemData {
   label: string;
   href?: string;
   current?: boolean;
@@ -14,9 +23,9 @@ export const Breadcrumb = () => {
   const location = useLocation();
   const { t, language } = useI18n();
   
-  const generateBreadcrumbs = (): BreadcrumbItem[] => {
+  const generateBreadcrumbs = (): BreadcrumbItemData[] => {
     const pathSegments = location.pathname.split('/').filter(Boolean);
-    const breadcrumbs: BreadcrumbItem[] = [
+    const breadcrumbs: BreadcrumbItemData[] = [
       { label: t('common.home'), href: '/' }
     ];
 
@@ -89,36 +98,30 @@ export const Breadcrumb = () => {
       />
       
       {/* 面包屑导航 */}
-      <nav 
-        className="flex items-center space-x-1 text-sm text-muted-foreground mb-6"
-        aria-label={t('common.tools')}
-      >
-        {breadcrumbs.map((item, index) => (
-          <div key={index} className="flex items-center">
-            {index > 0 && (
-              <ChevronRight className="h-4 w-4 mx-1" aria-hidden="true" />
-            )}
-            
-            {item.current ? (
-              <span 
-                className="font-medium text-foreground"
-                aria-current="page"
-              >
-                {index === 0 && <Home className="h-4 w-4 mr-1 inline" />}
-                {item.label}
-              </span>
-            ) : (
-              <Link 
-                to={item.href!} 
-                className="hover:text-foreground transition-colors"
-              >
-                {index === 0 && <Home className="h-4 w-4 mr-1 inline" />}
-                {item.label}
-              </Link>
-            )}
-          </div>
-        ))}
-      </nav>
+      <BreadcrumbContainer className="mb-6">
+        <BreadcrumbList>
+          {breadcrumbs.map((item, index) => (
+            <React.Fragment key={index}>
+              <BreadcrumbItem>
+                {item.current ? (
+                  <BreadcrumbPage className="flex items-center">
+                    {index === 0 && <Home className="h-4 w-4 mr-1" />}
+                    {item.label}
+                  </BreadcrumbPage>
+                ) : (
+                  <BreadcrumbLink asChild>
+                    <Link to={item.href!} className="flex items-center">
+                      {index === 0 && <Home className="h-4 w-4 mr-1" />}
+                      {item.label}
+                    </Link>
+                  </BreadcrumbLink>
+                )}
+              </BreadcrumbItem>
+              {index < breadcrumbs.length - 1 && <BreadcrumbSeparator />}
+            </React.Fragment>
+          ))}
+        </BreadcrumbList>
+      </BreadcrumbContainer>
     </>
   );
 };

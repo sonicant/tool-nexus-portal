@@ -1,104 +1,104 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://tool-nexus-portal.com/</loc>
-    <lastmod>2024-12-12</lastmod>
+    <loc>https://tool-nexus-portal.lovable.app</loc>
+    <lastmod>2024-12-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://tool-nexus-portal.com/tools/regex-tester</loc>
-    <lastmod>2024-12-12</lastmod>
+    <loc>https://tool-nexus-portal.lovable.app/tools/regex-tester</loc>
+    <lastmod>2024-12-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://tool-nexus-portal.com/tools/json-xml-converter</loc>
-    <lastmod>2024-12-12</lastmod>
+    <loc>https://tool-nexus-portal.lovable.app/tools/json-xml-converter</loc>
+    <lastmod>2024-12-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://tool-nexus-portal.com/tools/timestamp-converter</loc>
-    <lastmod>2024-12-12</lastmod>
+    <loc>https://tool-nexus-portal.lovable.app/tools/timestamp-converter</loc>
+    <lastmod>2024-12-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://tool-nexus-portal.com/tools/uuid-generator</loc>
-    <lastmod>2024-12-12</lastmod>
+    <loc>https://tool-nexus-portal.lovable.app/tools/uuid-generator</loc>
+    <lastmod>2024-12-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://tool-nexus-portal.com/tools/text-diff</loc>
-    <lastmod>2024-12-12</lastmod>
+    <loc>https://tool-nexus-portal.lovable.app/tools/text-diff</loc>
+    <lastmod>2024-12-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://tool-nexus-portal.com/tools/text-hash</loc>
-    <lastmod>2024-12-12</lastmod>
+    <loc>https://tool-nexus-portal.lovable.app/tools/text-hash</loc>
+    <lastmod>2024-12-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://tool-nexus-portal.com/tools/url-encoder</loc>
-    <lastmod>2024-12-12</lastmod>
+    <loc>https://tool-nexus-portal.lovable.app/tools/url-encoder</loc>
+    <lastmod>2024-12-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://tool-nexus-portal.com/tools/qr-generator</loc>
-    <lastmod>2024-12-12</lastmod>
+    <loc>https://tool-nexus-portal.lovable.app/tools/qr-generator</loc>
+    <lastmod>2024-12-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://tool-nexus-portal.com/tools/yaml-toml-converter</loc>
-    <lastmod>2024-12-12</lastmod>
+    <loc>https://tool-nexus-portal.lovable.app/tools/yaml-toml-converter</loc>
+    <lastmod>2024-12-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://tool-nexus-portal.com/tools/xml-validator</loc>
-    <lastmod>2024-12-12</lastmod>
+    <loc>https://tool-nexus-portal.lovable.app/tools/xml-validator</loc>
+    <lastmod>2024-12-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://tool-nexus-portal.com/tools/subnet-calculator</loc>
-    <lastmod>2024-12-12</lastmod>
+    <loc>https://tool-nexus-portal.lovable.app/tools/subnet-calculator</loc>
+    <lastmod>2024-12-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://tool-nexus-portal.com/tools/dns-query</loc>
-    <lastmod>2024-12-12</lastmod>
+    <loc>https://tool-nexus-portal.lovable.app/tools/dns-query</loc>
+    <lastmod>2024-12-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://tool-nexus-portal.com/tools/http-request-builder</loc>
-    <lastmod>2024-12-12</lastmod>
+    <loc>https://tool-nexus-portal.lovable.app/tools/http-request-builder</loc>
+    <lastmod>2024-12-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://tool-nexus-portal.com/tools/json-diff</loc>
-    <lastmod>2024-12-12</lastmod>
+    <loc>https://tool-nexus-portal.lovable.app/tools/json-diff</loc>
+    <lastmod>2024-12-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://tool-nexus-portal.com/tools/mermaid-renderer</loc>
-    <lastmod>2024-12-12</lastmod>
+    <loc>https://tool-nexus-portal.lovable.app/tools/mermaid-renderer</loc>
+    <lastmod>2024-12-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://tool-nexus-portal.com/tools/pcap-analyzer</loc>
-    <lastmod>2024-12-12</lastmod>
+    <loc>https://tool-nexus-portal.lovable.app/tools/pcap-analyzer</loc>
+    <lastmod>2024-12-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
